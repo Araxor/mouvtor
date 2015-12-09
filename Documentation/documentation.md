@@ -1,5 +1,11 @@
 # Mouvtor
 
+## Equipe
+
+- Lucien Camuglia
+- Alan Devaud
+- Dimitri Lizzi
+
 ## But
 
 Conception d'une application multi-input pour l'apprentissage de mouvements.
@@ -17,9 +23,38 @@ TODO: copier document fourni
 Deux vues:
 
 - Une application d'enregistrement de tracés
+    + Bouton de début d'enregistrement
+    + Bouton de fin d'enregistrement
+    + Sauvegarde du tracé dans un fichier
+    + Ouverture d'un tracé depuis un fichier
+    + Outils de dessin du tracé
+        * Ligne droite
+        * Libre
+    + Outils de sélection (bonus si le temps le permet)
+        * Souris
+        * Zone
+    + Zone de dessin
 - Une application de reproduction de tracés
+    + Ouverture d'un fichier de tracé
+    + Affichage du tracé demandé
+    + Enregistrement du tracé de l'utilisateur et évalution de la similarité avec le tracé original
 
+Un tracé est une liste de points qui ont: 
 
+- une coordonée (X, Y)
+- un taux de pression (Z)
+- un temps (millisecondes depuis le début du tracé)
+
+Lesx tracés seront enregistrés dans un fichier CSV contenant ces informations pour chaque point.
+
+Exemple:
+
+```csv
+36,27,43,2345
+34,55,43,2455
+55,23,42,2535
+55,66,27,2645
+```
 
 
 ## Planning
@@ -33,10 +68,10 @@ Deux vues:
 
 ### 09.12.2015
 
-- projet Visual Studio
-- interface
+- création projet Visual Studio
+- création interface
 - classes de base pour la gestion des tracés
-- classe générique pour la gestion des périfériques d'entrée
+- classe générique pour la gestion des périphériques d'entrée
 
 ### 16.12.2015
 
