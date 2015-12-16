@@ -43,20 +43,11 @@ namespace MouvtorEditor
         /// <param name="val">Boolean value</param>
         private void ChangeStateRecording(bool val)
         {
-            if (val)
-            {
-                TSBRecordAndStop.Image = Properties.Resources.shape_square;
-                TSBRecordAndStop.Text = "Stop record";
-            }
-            else
-            {
-                TSBRecordAndStop.Image = Properties.Resources.bullet_red;
-                TSBRecordAndStop.Text = "Record";
-            }
+            TSBRecordAndStop.Image = (val) ? Properties.Resources.shape_square : Properties.Resources.bullet_red;
+            TSBRecordAndStop.Text = (val) ? "Stop record" : "Record";
+            TSSLRecordInfo.Text = (val) ? "Recording" : "Not record";
 
             this.isRecording = val;
-
-            TSSLRecordInfo.Text = (val) ? "Recording" : "Not record";
         }
 
         private void recordToolStripMenuItem_Click(object sender, EventArgs e)
