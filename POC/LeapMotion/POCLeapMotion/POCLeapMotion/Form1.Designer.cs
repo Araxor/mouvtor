@@ -45,6 +45,7 @@
             // 
             // tmr
             // 
+            this.tmr.Interval = 1;
             this.tmr.Tick += new System.EventHandler(this.tmr_Tick);
             // 
             // Form1

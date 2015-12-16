@@ -14,17 +14,21 @@ namespace POCLeapMotion
 {
     public partial class Form1 : Form
     {
+        const int INDEX_ID=1;
         Controller controller;
         bool first = true;
         bool Start = false;
+        Graphics graphics;
         Point OldPos;
         public Form1()
         {
             InitializeComponent();
+             graphics = this.CreateGraphics();
         }
 
         private void BtnStartStop_Click(object sender, EventArgs e)
         {
+            graphics.Clear(this.BackColor);
             if (Start)
             {
                 tmr.Enabled = false;
@@ -52,23 +56,29 @@ namespace POCLeapMotion
         private void tmr_Tick(object sender, EventArgs e)
         {
             if (controller == null || !controller.IsConnected) return;
-            MoveButton(BtnStartStop, controller.Frame());
+            Draw(BtnStartStop, controller.Frame());
 
         }
 
-        private void MoveButton(Button btn, Frame frame)
+        private void Draw(Button btn, Frame frame)
         {
 
-            var fingers = frame.Fingers;
-            var graphics = this.CreateGraphics();
+           
+            var hands = frame.Hands; 
+            var hand = hands[0];
+            var fingers = hand.Fingers;
+           
+            
             var pen = new Pen(Color.Red);
 
             //graphics.Clear(this.BackColor);
 
          /*   foreach (var finger in fingers)
             {*/
+            if ((hands[0].IsRight)&&(fingers[INDEX_ID] != Finger.Invalid)&&(fingers[INDEX_ID].IsExtended))
+            {
+                var normailizedPos = frame.InteractionBox.NormalizePoint(fingers[INDEX_ID].StabilizedTipPosition, false);
 
-                var normailizedPos = frame.InteractionBox.NormalizePoint(fingers[2].StabilizedTipPosition, false);
 
                 var rect = new RectangleF(
                     normailizedPos.x * this.Width,
@@ -77,12 +87,12 @@ namespace POCLeapMotion
                    10, 10
 
                     );
-               // graphics.DrawEllipse(pen, rect);
+                // graphics.DrawEllipse(pen, rect);
                 if (first)
                 {
-                   OldPos = new System.Drawing.Point( (int)(normailizedPos.x * this.Width),
-                    (int)((1 - normailizedPos.y)  * this.Height));
-                    first = false;                                        
+                    OldPos = new System.Drawing.Point((int)(normailizedPos.x * this.Width),
+                     (int)((1 - normailizedPos.y) * this.Height));
+                    first = false;
                 }
                 else
                 {
@@ -91,6 +101,7 @@ namespace POCLeapMotion
                     graphics.DrawLine(pen, OldPos, newPos);
                     OldPos = newPos;
                 }
+            }
            /* }*/
 
 
