@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouvtorEditor", "MouvtorEdi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouvtorCommon", "MouvtorCommon\MouvtorCommon.csproj", "{A365E38A-5FAA-4CE7-85F3-A2B0BA63B610}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouvtorPlayer", "MouvtorPlayer\MouvtorPlayer.csproj", "{16CC330D-BA85-459B-A040-01EFA0037F79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A365E38A-5FAA-4CE7-85F3-A2B0BA63B610}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A365E38A-5FAA-4CE7-85F3-A2B0BA63B610}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A365E38A-5FAA-4CE7-85F3-A2B0BA63B610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16CC330D-BA85-459B-A040-01EFA0037F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16CC330D-BA85-459B-A040-01EFA0037F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16CC330D-BA85-459B-A040-01EFA0037F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16CC330D-BA85-459B-A040-01EFA0037F79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
