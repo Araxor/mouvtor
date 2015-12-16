@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MouvtorCommon
 {
-    public class InputDevice
+    public abstract class InputDevice
     {
         #region Properties
         public PointF CurrentNormalizedPosition { get; internal set; }
@@ -36,8 +36,8 @@ namespace MouvtorCommon
         #endregion
 
         #region Events
-        public event EventHandler onStartDrawing;
-        public event EventHandler onStopDrawing;
+        public event EventHandler StartDrawing;
+        public event EventHandler StopDrawing;
         #endregion
 
         #region Constructors
@@ -47,5 +47,19 @@ namespace MouvtorCommon
             CurrentNormalizedPosition = new PointF(0, 0);
         }
         #endregion
+
+        #region Methods
+
+        internal virtual void OnStartDrawing()
+        {
+            StartDrawing(this, EventArgs.Empty);
+        }
+
+        internal virtual void OnStopDrawing()
+        {
+            StopDrawing(this, EventArgs.Empty);
+        }
+
+        #endregion Methods
     }
 }
