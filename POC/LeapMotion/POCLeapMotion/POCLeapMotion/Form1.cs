@@ -14,32 +14,38 @@ namespace POCLeapMotion
 {
     public partial class Form1 : Form
     {
-        const int INDEX_ID=1;
+        const int FINGER_ID = 1; //0=thumb / 1=index / 2=major / 3=annular / 4=auricular
+        //leap motion controller
         Controller controller;
         bool first = true;
         bool Start = false;
         Graphics graphics;
         Point OldPos;
+
         public Form1()
         {
             InitializeComponent();
-             graphics = this.CreateGraphics();
+            graphics = this.CreateGraphics();
         }
+
 
         private void BtnStartStop_Click(object sender, EventArgs e)
         {
             graphics.Clear(this.BackColor);
+
             if (Start)
             {
                 tmr.Enabled = false;
                 Start = false;
                 BtnStartStop.Text = "Start";
+        
 
             }
             else
             {
                 try
                 {
+                    first = true;
                     controller = new Controller();
                     Start = true;
                     BtnStartStop.Text = "Stop";
@@ -63,31 +69,25 @@ namespace POCLeapMotion
         private void Draw(Button btn, Frame frame)
         {
 
-           
-            var hands = frame.Hands; 
+            var hands = frame.Hands;
             var hand = hands[0];
             var fingers = hand.Fingers;
-           
-            
             var pen = new Pen(Color.Red);
 
-            //graphics.Clear(this.BackColor);
-
-         /*   foreach (var finger in fingers)
-            {*/
-            if ((hands[0].IsRight)&&(fingers[INDEX_ID] != Finger.Invalid)&&(fingers[INDEX_ID].IsExtended))
+            if ((hands[0].IsRight) && (fingers[FINGER_ID] != Finger.Invalid) && (fingers[FINGER_ID].IsExtended))
             {
-                var normailizedPos = frame.InteractionBox.NormalizePoint(fingers[INDEX_ID].StabilizedTipPosition, false);
+                var normailizedPos = frame.InteractionBox.NormalizePoint(fingers[FINGER_ID].StabilizedTipPosition, false);
 
 
-                var rect = new RectangleF(
+               var rect = new RectangleF(
                     normailizedPos.x * this.Width,
                     (1 - normailizedPos.y) * this.Height,
-                    // normailizedPos.z * 10, normailizedPos.z * 10
                    10, 10
-
+                
                     );
-                // graphics.DrawEllipse(pen, rect);
+                //Define the presure
+                pen.Width = (1 - normailizedPos.z) * 10;
+
                 if (first)
                 {
                     OldPos = new System.Drawing.Point((int)(normailizedPos.x * this.Width),
@@ -102,9 +102,6 @@ namespace POCLeapMotion
                     OldPos = newPos;
                 }
             }
-           /* }*/
-
-
         }
     }
 }
