@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -89,6 +90,18 @@
     <Content Include="3dmouse.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\bullet_red.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\diskette.png" />
+    <None Include="Resources\select_restangular.png" />
+    <None Include="Resources\cursor.png" />
+    <None Include="Resources\draw_line.png" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\folder_stand.png" />
+    <None Include="Resources\shape_square.png" />
+    <None Include="Resources\stop.png" />
+    <None Include="Resources\action.png" />
+    <None Include="Resources\file_save_as.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
