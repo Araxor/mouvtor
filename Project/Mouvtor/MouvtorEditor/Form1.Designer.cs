@@ -29,35 +29,36 @@
         private void InitializeComponent()
         {
             this.ToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.TSCBXInputDevice = new System.Windows.Forms.ToolStripComboBox();
-            this.MenuStrip = new System.Windows.Forms.MenuStrip();
-            this.TSMIFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMITools = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIAction = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.TSMIStopRecording = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIDrawLine = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIPencil = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIMouse = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIRectangleSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.TSBOpen = new System.Windows.Forms.ToolStripButton();
             this.TSBSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.TSBRecordAndStop = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.TSCBXInputDevice = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.TSBLine = new System.Windows.Forms.ToolStripButton();
             this.TSBPencil = new System.Windows.Forms.ToolStripButton();
             this.TSBCursor = new System.Windows.Forms.ToolStripButton();
             this.TSBRectangleSelection = new System.Windows.Forms.ToolStripButton();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.TSMIFile = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.TSMISave = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMISaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.TSMIQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIAction = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIRecord = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIStopRecording = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMITools = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIDrawLine = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIPencil = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIMouse = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIRectangleSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TSSLRecordInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.ToolStrip.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -72,6 +73,7 @@
             this.toolStripSeparator1,
             this.TSBRecordAndStop,
             this.toolStripSeparator2,
+            this.toolStripLabel1,
             this.TSCBXInputDevice,
             this.toolStripSeparator3,
             this.TSBLine,
@@ -83,130 +85,6 @@
             this.ToolStrip.Size = new System.Drawing.Size(868, 25);
             this.ToolStrip.TabIndex = 0;
             this.ToolStrip.Text = "TSMenu";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // TSCBXInputDevice
-            // 
-            this.TSCBXInputDevice.Items.AddRange(new object[] {
-            "Mouse",
-            "3D Mouse",
-            "Leap motion",
-            "Touch screen"});
-            this.TSCBXInputDevice.Name = "TSCBXInputDevice";
-            this.TSCBXInputDevice.Size = new System.Drawing.Size(121, 25);
-            this.TSCBXInputDevice.Text = "Input device";
-            // 
-            // MenuStrip
-            // 
-            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSMIFile,
-            this.TSMIAction,
-            this.TSMITools});
-            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(868, 24);
-            this.MenuStrip.TabIndex = 1;
-            this.MenuStrip.Text = "menuStrip1";
-            // 
-            // TSMIFile
-            // 
-            this.TSMIFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSMIOpen,
-            this.toolStripMenuItem1,
-            this.TSMISave,
-            this.TSMISaveAs,
-            this.toolStripMenuItem2,
-            this.TSMIQuit});
-            this.TSMIFile.Name = "TSMIFile";
-            this.TSMIFile.Size = new System.Drawing.Size(37, 20);
-            this.TSMIFile.Text = "&File";
-            // 
-            // TSMITools
-            // 
-            this.TSMITools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSMIDrawLine,
-            this.TSMIPencil,
-            this.TSMIMouse,
-            this.TSMIRectangleSelection});
-            this.TSMITools.Name = "TSMITools";
-            this.TSMITools.Size = new System.Drawing.Size(48, 20);
-            this.TSMITools.Text = "Too&ls";
-            // 
-            // TSMIAction
-            // 
-            this.TSMIAction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSMIRecord,
-            this.TSMIStopRecording});
-            this.TSMIAction.Name = "TSMIAction";
-            this.TSMIAction.Size = new System.Drawing.Size(54, 20);
-            this.TSMIAction.Text = "A&ction";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(172, 6);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(172, 6);
-            // 
-            // TSMIStopRecording
-            // 
-            this.TSMIStopRecording.Image = global::MouvtorEditor.Properties.Resources.shape_square;
-            this.TSMIStopRecording.Name = "TSMIStopRecording";
-            this.TSMIStopRecording.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.TSMIStopRecording.Size = new System.Drawing.Size(193, 22);
-            this.TSMIStopRecording.Text = "S&top recording";
-            this.TSMIStopRecording.Click += new System.EventHandler(this.TSMIStopRecording_Click);
-            // 
-            // TSMIDrawLine
-            // 
-            this.TSMIDrawLine.Image = global::MouvtorEditor.Properties.Resources.draw_line;
-            this.TSMIDrawLine.Name = "TSMIDrawLine";
-            this.TSMIDrawLine.ShortcutKeyDisplayString = "";
-            this.TSMIDrawLine.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.TSMIDrawLine.Size = new System.Drawing.Size(218, 22);
-            this.TSMIDrawLine.Text = "Draw &line";
-            // 
-            // TSMIPencil
-            // 
-            this.TSMIPencil.Image = global::MouvtorEditor.Properties.Resources.pencil;
-            this.TSMIPencil.Name = "TSMIPencil";
-            this.TSMIPencil.ShortcutKeyDisplayString = "";
-            this.TSMIPencil.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.TSMIPencil.Size = new System.Drawing.Size(218, 22);
-            this.TSMIPencil.Text = "&Pencil";
-            // 
-            // TSMIMouse
-            // 
-            this.TSMIMouse.Image = global::MouvtorEditor.Properties.Resources.cursor;
-            this.TSMIMouse.Name = "TSMIMouse";
-            this.TSMIMouse.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.TSMIMouse.Size = new System.Drawing.Size(218, 22);
-            this.TSMIMouse.Text = "&Mouse";
-            // 
-            // TSMIRectangleSelection
-            // 
-            this.TSMIRectangleSelection.Image = global::MouvtorEditor.Properties.Resources.select_restangular;
-            this.TSMIRectangleSelection.Name = "TSMIRectangleSelection";
-            this.TSMIRectangleSelection.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.TSMIRectangleSelection.Size = new System.Drawing.Size(218, 22);
-            this.TSMIRectangleSelection.Text = "Rect&angle selection";
             // 
             // TSBOpen
             // 
@@ -227,6 +105,11 @@
             this.TSBSave.Size = new System.Drawing.Size(23, 22);
             this.TSBSave.Text = "Save";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // TSBRecordAndStop
             // 
             this.TSBRecordAndStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -236,6 +119,27 @@
             this.TSBRecordAndStop.Size = new System.Drawing.Size(23, 22);
             this.TSBRecordAndStop.Text = "Record";
             this.TSBRecordAndStop.Click += new System.EventHandler(this.TSBRecordAndStop_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // TSCBXInputDevice
+            // 
+            this.TSCBXInputDevice.Items.AddRange(new object[] {
+            "Mouse",
+            "3D Mouse",
+            "Leap motion",
+            "Touch screen"});
+            this.TSCBXInputDevice.Name = "TSCBXInputDevice";
+            this.TSCBXInputDevice.Size = new System.Drawing.Size(121, 25);
+            this.TSCBXInputDevice.Text = "Input device";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // TSBLine
             // 
@@ -273,6 +177,31 @@
             this.TSBRectangleSelection.Size = new System.Drawing.Size(23, 22);
             this.TSBRectangleSelection.Text = "Rectangle selection";
             // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSMIFile,
+            this.TSMIAction,
+            this.TSMITools});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(868, 24);
+            this.MenuStrip.TabIndex = 1;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
+            // TSMIFile
+            // 
+            this.TSMIFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSMIOpen,
+            this.toolStripMenuItem1,
+            this.TSMISave,
+            this.TSMISaveAs,
+            this.toolStripMenuItem2,
+            this.TSMIQuit});
+            this.TSMIFile.Name = "TSMIFile";
+            this.TSMIFile.Size = new System.Drawing.Size(37, 20);
+            this.TSMIFile.Text = "&File";
+            // 
             // TSMIOpen
             // 
             this.TSMIOpen.Image = global::MouvtorEditor.Properties.Resources.folder_stand;
@@ -280,6 +209,11 @@
             this.TSMIOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.TSMIOpen.Size = new System.Drawing.Size(175, 22);
             this.TSMIOpen.Text = "&Open";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(172, 6);
             // 
             // TSMISave
             // 
@@ -298,6 +232,11 @@
             this.TSMISaveAs.Size = new System.Drawing.Size(175, 22);
             this.TSMISaveAs.Text = "Sav&e as";
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(172, 6);
+            // 
             // TSMIQuit
             // 
             this.TSMIQuit.Image = global::MouvtorEditor.Properties.Resources.cross;
@@ -307,6 +246,15 @@
             this.TSMIQuit.Text = "&Quit";
             this.TSMIQuit.Click += new System.EventHandler(this.TSMIQuit_Click);
             // 
+            // TSMIAction
+            // 
+            this.TSMIAction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSMIRecord,
+            this.TSMIStopRecording});
+            this.TSMIAction.Name = "TSMIAction";
+            this.TSMIAction.Size = new System.Drawing.Size(54, 20);
+            this.TSMIAction.Text = "A&ction";
+            // 
             // TSMIRecord
             // 
             this.TSMIRecord.Image = global::MouvtorEditor.Properties.Resources.bullet_red;
@@ -315,6 +263,60 @@
             this.TSMIRecord.Size = new System.Drawing.Size(193, 22);
             this.TSMIRecord.Text = "&Record";
             this.TSMIRecord.Click += new System.EventHandler(this.recordToolStripMenuItem_Click);
+            // 
+            // TSMIStopRecording
+            // 
+            this.TSMIStopRecording.Image = global::MouvtorEditor.Properties.Resources.shape_square;
+            this.TSMIStopRecording.Name = "TSMIStopRecording";
+            this.TSMIStopRecording.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+            this.TSMIStopRecording.Size = new System.Drawing.Size(193, 22);
+            this.TSMIStopRecording.Text = "S&top recording";
+            this.TSMIStopRecording.Click += new System.EventHandler(this.TSMIStopRecording_Click);
+            // 
+            // TSMITools
+            // 
+            this.TSMITools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSMIDrawLine,
+            this.TSMIPencil,
+            this.TSMIMouse,
+            this.TSMIRectangleSelection});
+            this.TSMITools.Name = "TSMITools";
+            this.TSMITools.Size = new System.Drawing.Size(48, 20);
+            this.TSMITools.Text = "Too&ls";
+            // 
+            // TSMIDrawLine
+            // 
+            this.TSMIDrawLine.Image = global::MouvtorEditor.Properties.Resources.draw_line;
+            this.TSMIDrawLine.Name = "TSMIDrawLine";
+            this.TSMIDrawLine.ShortcutKeyDisplayString = "";
+            this.TSMIDrawLine.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this.TSMIDrawLine.Size = new System.Drawing.Size(218, 22);
+            this.TSMIDrawLine.Text = "Draw &line";
+            // 
+            // TSMIPencil
+            // 
+            this.TSMIPencil.Image = global::MouvtorEditor.Properties.Resources.pencil;
+            this.TSMIPencil.Name = "TSMIPencil";
+            this.TSMIPencil.ShortcutKeyDisplayString = "";
+            this.TSMIPencil.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.TSMIPencil.Size = new System.Drawing.Size(218, 22);
+            this.TSMIPencil.Text = "&Pencil";
+            // 
+            // TSMIMouse
+            // 
+            this.TSMIMouse.Image = global::MouvtorEditor.Properties.Resources.cursor;
+            this.TSMIMouse.Name = "TSMIMouse";
+            this.TSMIMouse.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.TSMIMouse.Size = new System.Drawing.Size(218, 22);
+            this.TSMIMouse.Text = "&Mouse";
+            // 
+            // TSMIRectangleSelection
+            // 
+            this.TSMIRectangleSelection.Image = global::MouvtorEditor.Properties.Resources.select_restangular;
+            this.TSMIRectangleSelection.Name = "TSMIRectangleSelection";
+            this.TSMIRectangleSelection.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.TSMIRectangleSelection.Size = new System.Drawing.Size(218, 22);
+            this.TSMIRectangleSelection.Text = "Rect&angle selection";
             // 
             // statusStrip1
             // 
@@ -333,6 +335,12 @@
             this.TSSLRecordInfo.Name = "TSSLRecordInfo";
             this.TSSLRecordInfo.Size = new System.Drawing.Size(64, 17);
             this.TSSLRecordInfo.Text = "Not record";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel1.Text = "Input device :";
             // 
             // FrmEditor
             // 
@@ -391,6 +399,7 @@
         private System.Windows.Forms.ToolStripMenuItem TSMIRectangleSelection;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel TSSLRecordInfo;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
 
     }
 }
