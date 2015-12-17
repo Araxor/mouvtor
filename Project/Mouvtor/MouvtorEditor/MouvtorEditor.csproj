@@ -87,9 +87,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="3dmouse.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\bullet_red.png" />
     <None Include="Resources\cross.png" />
     <None Include="Resources\diskette.png" />
