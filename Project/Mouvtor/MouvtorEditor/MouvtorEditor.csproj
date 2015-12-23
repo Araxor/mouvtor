@@ -51,7 +51,6 @@
     <Compile Include="FrmMouvtor.Designer.cs">
       <DependentUpon>FrmMouvtor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mouse3d.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmMouvtor.resx">

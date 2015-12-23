@@ -40,9 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Point3DAbsolute.cs" />
-    <Compile Include="InputDevice.cs" />
-    <Compile Include="PathPoint.cs" />
+    <Compile Include="IInputDevice.cs" />
+    <Compile Include="PathStep.cs" />
     <Compile Include="Point3DNormalized.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
