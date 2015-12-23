@@ -14,12 +14,15 @@ namespace InputDevices
     {
         #region Constants
         const int DEFAULT_UPDATE_INTERVAL = 1;
-        //const double
+        const double MAX_X = 4.0;
+        const double MAX_Y = 4.0;
+        const double MAX_Z = 4.0;
         #endregion
 
         #region Properties
         public Point3DNormalized CurrentNormalizedPosition { get; protected set; }
         protected Timer UpdateTimer { get; set; }
+        protected bool WasDrawing { get; set; }
         #endregion
 
         #region Events
@@ -50,10 +53,23 @@ namespace InputDevices
                 if (FalconWrapper.IsDeviceReady())
                 {
                     CurrentNormalizedPosition = new Point3DNormalized(
-                        FalconWrapper.GetXPos()/4.0,
-                        FalconWrapper.GetYPos()/4.0,
-                        FalconWrapper.GetZPos()/4.0
+                        FalconWrapper.GetXPos()/MAX_X,
+                        FalconWrapper.GetYPos()/MAX_Y,
+                        FalconWrapper.GetZPos()/MAX_Z
                     );
+
+                    var buttonIsPressed = FalconWrapper.IsHapticButtonDepressed();
+
+                    if (!WasDrawing && buttonIsPressed)
+                    {
+                        StartDrawing(this, EventArgs.Empty);
+                    }
+                    if (WasDrawing && !buttonIsPressed)
+                    {
+                        StopDrawing(this, EventArgs.Empty);
+                    }
+
+                    WasDrawing = buttonIsPressed;
                 }
                 else
                 {
