@@ -22,7 +22,6 @@ namespace MouvtorEditor
         #region Const
         private const int MIN_POINTS = 2;
         private const int DEFAULT_PEN_WIDTH = 12;
-        private const Color DEFAULT_PEN_COLOR = Color.Blue;
         #endregion
 
         #region Properties
@@ -76,7 +75,7 @@ namespace MouvtorEditor
         /// <summary>
         /// Create and initialize a new DrawingZone
         /// </summary>
-        public DrawingZone() : this(DEFAULT_PEN_COLOR, DEFAULT_PEN_WIDTH)
+        public DrawingZone() : this(Color.Blue, DEFAULT_PEN_WIDTH)
         {
 
         }

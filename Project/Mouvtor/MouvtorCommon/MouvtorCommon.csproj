@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="IInputDevice.cs" />
     <Compile Include="PathStep.cs" />
-    <Compile Include="PathPoint.cs" />
     <Compile Include="Point3DNormalized.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
