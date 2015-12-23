@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouvtorPlayer", "MouvtorPla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovintFalcon", "NovintFalcon\NovintFalcon.csproj", "{00A9B025-0FD7-4425-85B5-E23D63B3F01E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputDevices", "InputDevices\InputDevices.csproj", "{2D4D3FF1-6299-436C-B2BB-27275169F288}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{00A9B025-0FD7-4425-85B5-E23D63B3F01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A9B025-0FD7-4425-85B5-E23D63B3F01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A9B025-0FD7-4425-85B5-E23D63B3F01E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D4D3FF1-6299-436C-B2BB-27275169F288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D4D3FF1-6299-436C-B2BB-27275169F288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D4D3FF1-6299-436C-B2BB-27275169F288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D4D3FF1-6299-436C-B2BB-27275169F288}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
