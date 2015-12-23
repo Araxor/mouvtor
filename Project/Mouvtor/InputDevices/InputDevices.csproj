@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00A9B025-0FD7-4425-85B5-E23D63B3F01E}</ProjectGuid>
+    <ProjectGuid>{2D4D3FF1-6299-436C-B2BB-27275169F288}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NovintFalcon</RootNamespace>
-    <AssemblyName>NovintFalcon</AssemblyName>
+    <RootNamespace>InputDevices</RootNamespace>
+    <AssemblyName>InputDevices</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,38 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FalconWrapper.cs" />
+    <Compile Include="NovintFalcon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="dhdlc.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="dhdlcDriver.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Falcon Wrapper.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="hdl.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="hdal.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="novint_T0.bin">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="novint_T2.bin">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MouvtorCommon\MouvtorCommon.csproj">
       <Project>{a365e38a-5faa-4ce7-85f3-a2b0ba63b610}</Project>
       <Name>MouvtorCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NovintFalcon\NovintFalcon.csproj">
+      <Project>{00a9b025-0fd7-4425-85b5-e23d63b3f01e}</Project>
+      <Name>NovintFalcon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
