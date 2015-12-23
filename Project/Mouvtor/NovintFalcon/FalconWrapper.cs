@@ -30,5 +30,7 @@ namespace NovintFalcon
         public static extern void SetServo(double[] speed);
         [DllImport(falcon)]
         public static extern void SetServoPos(double[] pos, double strength);
+        [DllImport(falcon)]
+        public static extern bool IsHapticButtonDepressed();
     }
 }
