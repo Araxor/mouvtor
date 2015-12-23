@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MouvtorCommon;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +14,12 @@ namespace MouvtorEditor
     public partial class FrmEditor : Form
     {
 
+        private Timer refreshTimer;
         private bool isRecording;
+
+        public Timer RefreshTimer { get { return refreshTimer; } set { refreshTimer = value; } }
         private bool IsRecording { set { ChangeStateRecording(value); } get { return isRecording; } }
+
 
         public FrmEditor()
         {
@@ -25,6 +30,22 @@ namespace MouvtorEditor
         {
             TSCBXInputDevice.SelectedIndex = 0;
             this.IsRecording = false;
+            DZEditor.InitProperties(Color.Blue, 10);
+
+            // Initialize timer
+            this.RefreshTimer = new Timer();
+            this.RefreshTimer.Interval = 10;
+            this.RefreshTimer.Tick += RefreshTimer_Tick;
+            this.RefreshTimer.Enabled = true;
+
+
+            DZEditor.AddPointDrawing(new Point3DNormalized(0.5, 0.23, 1));
+            DZEditor.AddPointDrawing(new Point3DNormalized(0.5, 0.56, 1));
+        }
+
+        void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            Invalidate();
         }
 
         private void TSMIQuit_Click(object sender, EventArgs e)

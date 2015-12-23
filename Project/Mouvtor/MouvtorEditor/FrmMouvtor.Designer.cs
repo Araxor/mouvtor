@@ -34,6 +34,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.TSBRecordAndStop = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.TSCBXInputDevice = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.TSBLine = new System.Windows.Forms.ToolStripButton();
@@ -58,7 +59,7 @@
             this.TSMIRectangleSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TSSLRecordInfo = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.DZEditor = new MouvtorEditor.DrawingZone();
             this.ToolStrip.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -124,6 +125,12 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel1.Text = "Input device :";
             // 
             // TSCBXInputDevice
             // 
@@ -336,11 +343,17 @@
             this.TSSLRecordInfo.Size = new System.Drawing.Size(64, 17);
             this.TSSLRecordInfo.Text = "Not record";
             // 
-            // toolStripLabel1
+            // DZEditor
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
-            this.toolStripLabel1.Text = "Input device :";
+            this.DZEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DZEditor.Location = new System.Drawing.Point(0, 49);
+            this.DZEditor.Name = "DZEditor";
+            this.DZEditor.PenColor = System.Drawing.Color.Empty;
+            this.DZEditor.PenDrawing = null;
+            this.DZEditor.PenWidth = 12F;
+            this.DZEditor.PointDrawingList = null;
+            this.DZEditor.Size = new System.Drawing.Size(868, 449);
+            this.DZEditor.TabIndex = 3;
             // 
             // FrmEditor
             // 
@@ -348,6 +361,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(868, 520);
+            this.Controls.Add(this.DZEditor);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.MenuStrip);
@@ -400,6 +414,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel TSSLRecordInfo;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private DrawingZone DZEditor;
 
     }
 }
