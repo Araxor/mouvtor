@@ -48,6 +48,9 @@
             this.TSSLRecordInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.TSSLPlayInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.TSSLInpitDeviceType = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.TSCBXInputDevice = new System.Windows.Forms.ToolStripComboBox();
             this.MenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -79,20 +82,20 @@
             this.TSMIOpen.Image = global::MouvtorPlayer.Properties.Resources.folder_stand;
             this.TSMIOpen.Name = "TSMIOpen";
             this.TSMIOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.TSMIOpen.Size = new System.Drawing.Size(152, 22);
+            this.TSMIOpen.Size = new System.Drawing.Size(146, 22);
             this.TSMIOpen.Text = "&Open";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(143, 6);
             // 
             // TSMIQuit
             // 
             this.TSMIQuit.Image = global::MouvtorPlayer.Properties.Resources.cross;
             this.TSMIQuit.Name = "TSMIQuit";
             this.TSMIQuit.ShortcutKeyDisplayString = "Ctrl+Q";
-            this.TSMIQuit.Size = new System.Drawing.Size(152, 22);
+            this.TSMIQuit.Size = new System.Drawing.Size(146, 22);
             this.TSMIQuit.Text = "&Quit";
             this.TSMIQuit.Click += new System.EventHandler(this.TSMIQuit_Click);
             // 
@@ -155,7 +158,10 @@
             this.TSBOpen,
             this.toolStripSeparator1,
             this.TSBPlayPause,
-            this.TSBRecordAndStop});
+            this.TSBRecordAndStop,
+            this.toolStripSeparator2,
+            this.toolStripLabel1,
+            this.TSCBXInputDevice});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(836, 25);
@@ -226,6 +232,28 @@
             this.TSSLInpitDeviceType.Size = new System.Drawing.Size(108, 17);
             this.TSSLInpitDeviceType.Text = "Input Device Type :";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel1.Text = "Input device :";
+            // 
+            // TSCBXInputDevice
+            // 
+            this.TSCBXInputDevice.Items.AddRange(new object[] {
+            "Mouse",
+            "3D Mouse",
+            "Leap motion",
+            "Touch screen"});
+            this.TSCBXInputDevice.Name = "TSCBXInputDevice";
+            this.TSCBXInputDevice.Size = new System.Drawing.Size(121, 25);
+            this.TSCBXInputDevice.Text = "Input device";
+            // 
             // FrmMouvtorPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +300,9 @@
         private System.Windows.Forms.ToolStripStatusLabel TSSLRecordInfo;
         private System.Windows.Forms.ToolStripStatusLabel TSSLPlayInfo;
         private System.Windows.Forms.ToolStripStatusLabel TSSLInpitDeviceType;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripComboBox TSCBXInputDevice;
     }
 }
 
