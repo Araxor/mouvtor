@@ -24,13 +24,14 @@ namespace MouvtorEditor
         public FrmEditor()
         {
             InitializeComponent();
+            DZEditor.InitProperties(Color.Blue, 12);
         }
 
         private void FrmEditor_Load(object sender, EventArgs e)
         {
             TSCBXInputDevice.SelectedIndex = 0;
             this.IsRecording = false;
-            DZEditor.InitProperties(Color.Blue, 10);
+            
 
             // Initialize timer
             this.RefreshTimer = new Timer();
@@ -38,9 +39,9 @@ namespace MouvtorEditor
             this.RefreshTimer.Tick += RefreshTimer_Tick;
             this.RefreshTimer.Enabled = true;
 
-
-            DZEditor.AddPointDrawing(new Point3DNormalized(0.5, 0.23, 1));
-            DZEditor.AddPointDrawing(new Point3DNormalized(0.5, 0.56, 1));
+            /*DZEditor.AddPointDrawing(new Point3DNormalized(0.5, 1, 1));
+            DZEditor.AddPointDrawing(new Point3DNormalized(0.25, 0.5, 1));
+            DZEditor.AddPointDrawing(new Point3DNormalized(1, 0.5, 1));*/
         }
 
         void RefreshTimer_Tick(object sender, EventArgs e)

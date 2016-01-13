@@ -1,10 +1,6 @@
 ﻿using MouvtorCommon;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MouvtorEditor
@@ -64,7 +60,9 @@ namespace MouvtorEditor
         /// <summary>
         /// Get or set the list of normalized point
         /// </summary>
-        public List<Point3DNormalized> PointNormalized
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        private List<Point3DNormalized> PointNormalized
         {
             get { return _pointNormalized; }
             set { _pointNormalized = value; }
@@ -75,7 +73,8 @@ namespace MouvtorEditor
         /// <summary>
         /// Create and initialize a new DrawingZone
         /// </summary>
-        public DrawingZone() : this(Color.Blue, DEFAULT_PEN_WIDTH)
+        public DrawingZone()
+            : this(Color.Blue, DEFAULT_PEN_WIDTH)
         {
 
         }
@@ -84,7 +83,8 @@ namespace MouvtorEditor
         /// Create and initialize a new DrawingZone with color
         /// </summary>
         /// <param name="color"></param>
-        public DrawingZone(Color color) : this(color, DEFAULT_PEN_WIDTH)
+        public DrawingZone(Color color)
+            : this(color, DEFAULT_PEN_WIDTH)
         {
         }
 
@@ -123,8 +123,19 @@ namespace MouvtorEditor
         /// <param name="normalizedPoint">Point3DNormalized</param>
         public void AddPointDrawing(Point3DNormalized normalizedPoint)
         {
+
             this.PointNormalized.Add(normalizedPoint); // Save the normalized point
-            this.PointDrawingList.Add(new Point((int)(normalizedPoint.X * this.Width), (int)(normalizedPoint.Y * this.Height))); // Add the point which prepare for the draw
+            this.UnnormalizePointDrwaingList();
+        }
+
+        /// <summary>
+        /// Normalize all point for the drawing list
+        /// </summary>
+        private void UnnormalizePointDrwaingList()
+        {
+            this.PointDrawingList.Clear();
+            foreach (Point3DNormalized p3n in this.PointNormalized)
+                this.PointDrawingList.Add(new Point((int)(p3n.X * this.Width), (int)(p3n.Y * this.Height)));
         }
 
         /// <summary>
@@ -134,7 +145,6 @@ namespace MouvtorEditor
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
             if (this.PointDrawingList.Count >= MIN_POINTS)
                 e.Graphics.DrawLines(this.PenDrawing, this.PointDrawingList.ToArray());
         }

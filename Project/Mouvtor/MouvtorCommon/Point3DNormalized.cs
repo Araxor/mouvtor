@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MouvtorCommon
 {
+    [Serializable]
     public struct Point3DNormalized
     {
         private double _x;

@@ -76,8 +76,5 @@ namespace InputDevices
 
         }
         #endregion
-
-
-
     }
 }
