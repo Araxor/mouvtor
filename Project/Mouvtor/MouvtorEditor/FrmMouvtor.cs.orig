@@ -26,6 +26,7 @@ namespace MouvtorEditor
         private bool IsRecording { set { ChangeStateRecording(value); } get { return isRecording; } }
         #endregion
 
+<<<<<<< HEAD
         #region Personnal methods
         /// <summary>
         /// Change the record state and show the good picture on the tools bar
@@ -39,15 +40,21 @@ namespace MouvtorEditor
 
             this.isRecording = val;
         }
+        #endregion
+=======
         private IInputDevice DrawingDevice;
         private bool allowDraw = false;
-        #endregion
+>>>>>>> Trying to draw with MouvtorEditor and inputDevices
 
         public FrmEditor()
         {
             InitializeComponent();
+<<<<<<< HEAD
             DZEditor.InitProperties(Color.Blue, 12);
+=======
+            
 
+>>>>>>> Trying to draw with MouvtorEditor and inputDevices
         }
 
 
@@ -64,6 +71,13 @@ namespace MouvtorEditor
             this.RefreshTimer.Interval = 100;
             this.RefreshTimer.Tick += RefreshTimer_Tick;
             this.RefreshTimer.Enabled = true;
+<<<<<<< HEAD
+=======
+
+
+           /* DZEditor.AddPointDrawing(new Point3DNormalized(0.5, 0.23, 1));
+            DZEditor.AddPointDrawing(new Point3DNormalized(0.5, 0.56, 1));*/
+>>>>>>> Trying to draw with MouvtorEditor and inputDevices
         }
 
         void RefreshTimer_Tick(object sender, EventArgs e)
@@ -72,7 +86,7 @@ namespace MouvtorEditor
             {
                 DZEditor.AddPointDrawing(DrawingDevice.CurrentNormalizedPosition);
             }
-            Refresh();
+            Invalidate();
             
         }
 
@@ -115,25 +129,23 @@ namespace MouvtorEditor
             switch (TSCBXInputDevice.SelectedIndex)
             {
                 case 0:
-                    InputDevices.Mouse mouse = new Mouse(DZEditor);
+                    InputDevices.Mouse mouse = new Mouse(this);
                     DrawingDevice = mouse;
                     break;
                 case 2:
                     InputDevices.LeapMotion leap = new LeapMotion();
                     if (leap.IsConnected)
                     {
-                        DrawingDevice = leap;                       
+                        DrawingDevice = leap;
                     }
                     else
                     {
                         MessageBox.Show("Leap motion disconected");
                     }
                     break;
-                     
             }
             DrawingDevice.StartDrawing += DrawingDevice_StartDrawing;
             DrawingDevice.StopDrawing += DrawingDevice_StopDrawing;
-            
         }
     }
 }

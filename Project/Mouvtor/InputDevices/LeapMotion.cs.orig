@@ -2,7 +2,6 @@
 using Leap;
 using MouvtorCommon;
 using System.Timers;
-using System.Windows.Forms;
 
 
 namespace InputDevices
@@ -13,7 +12,7 @@ namespace InputDevices
         const int FINGER_ID = 1; //0=thumb / 1=index / 2=major / 3=annular / 4=auricular
       
         Controller controller;//leap motion controller        
-        System.Timers.Timer tmr;
+        Timer tmr;
         #endregion
 
         #region Events
@@ -42,23 +41,16 @@ namespace InputDevices
         #region constructor
         public LeapMotion()
         {
-            this.StartDrawing += OnStartDrawing;
-            this.StopDrawing += OnStopDrawing;
-            this.Controller = new Controller();
-            tmr = new System.Timers.Timer();
+            this.Controller = new Controller();            
+            tmr = new Timer();
             tmr.AutoReset = true;
             tmr.Interval = 1;
             tmr.Elapsed+= tmr_Tick;
             tmr.Start();
         }
-
         #endregion
 
         #region methods
-
-        void OnStartDrawing(object sender, EventArgs e) { }
-        void OnStopDrawing(object sender, EventArgs e) { }
-
         void tmr_Tick(object sender, EventArgs e)
         {
             Frame frame = Controller.Frame();
@@ -79,30 +71,21 @@ namespace InputDevices
                 {
                     var normailizedPos = frame.InteractionBox.NormalizePoint(fingers[FINGER_ID].StabilizedTipPosition, false);
                     CurrentNormalizedPosition = new Point3DNormalized(normailizedPos.x, 1 - normailizedPos.y, 1 - normailizedPos.z);
-                   /* try{*/
+
                     StartDrawing(this, EventArgs.Empty);
-                   /* }
-                    catch (Exception exc)
-                    {
-                        MessageBox.Show(exc.Message);
-                    }*/
                 }
                 if (!this.controller.HasFocus)
                 {
-                   
-                    try
-                    {
-                        StopDrawing(this, EventArgs.Empty);
-                    }
-                    catch (Exception exc)
-                    {
-                        MessageBox.Show(exc.Message);
-                    }
+                    StopDrawing(this, EventArgs.Empty);
                 }
             }
 
 
         }
         #endregion
+<<<<<<< HEAD
+=======
+
+>>>>>>> Trying to draw with MouvtorEditor and inputDevices
     }
 }

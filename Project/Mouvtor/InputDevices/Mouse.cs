@@ -42,12 +42,17 @@ namespace InputDevices
             tmr.Enabled = true;
             controlWidth = control.Bounds.Width;
             controlHeight = control.Bounds.Height;
+            this.StartDrawing += OnStartDrawing;
+            this.StopDrawing += OnStopDrawing;
         }
 
 
         #endregion
 
         #region methods
+        void OnStartDrawing(object sender, EventArgs e) { }
+        void OnStopDrawing(object sender, EventArgs e) { }
+
         void control_MouseUp(object sender, MouseEventArgs e)
         {
             StopDrawing(this, EventArgs.Empty);
@@ -61,7 +66,7 @@ namespace InputDevices
         void control_MouseMove(object sender, MouseEventArgs e)
         {
             this.X = e.X;
-            this.Y = e.Y;           
+            this.Y = e.Y;               
         }
         void tmr_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
