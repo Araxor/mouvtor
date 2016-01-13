@@ -14,12 +14,30 @@ namespace MouvtorEditor
     public partial class FrmEditor : Form
     {
 
+        #region Fields
         private Timer refreshTimer;
         private bool isRecording;
+        #endregion
 
+        #region Properties
         public Timer RefreshTimer { get { return refreshTimer; } set { refreshTimer = value; } }
         private bool IsRecording { set { ChangeStateRecording(value); } get { return isRecording; } }
+        #endregion
 
+        #region Personnal methods
+        /// <summary>
+        /// Change the record state and show the good picture on the tools bar
+        /// </summary>
+        /// <param name="val">Boolean value</param>
+        private void ChangeStateRecording(bool val)
+        {
+            TSBRecordAndStop.Image = (val) ? Properties.Resources.shape_square : Properties.Resources.bullet_red;
+            TSBRecordAndStop.Text = (val) ? "Stop record" : "Record";
+            TSSLRecordInfo.Text = (val) ? "Recording" : "Not record";
+
+            this.isRecording = val;
+        }
+        #endregion
 
         public FrmEditor()
         {
@@ -30,18 +48,15 @@ namespace MouvtorEditor
         private void FrmEditor_Load(object sender, EventArgs e)
         {
             TSCBXInputDevice.SelectedIndex = 0;
+            this.DoubleBuffered = true;
             this.IsRecording = false;
-            
+
 
             // Initialize timer
             this.RefreshTimer = new Timer();
-            this.RefreshTimer.Interval = 10;
+            this.RefreshTimer.Interval = 100;
             this.RefreshTimer.Tick += RefreshTimer_Tick;
             this.RefreshTimer.Enabled = true;
-
-            /*DZEditor.AddPointDrawing(new Point3DNormalized(0.5, 1, 1));
-            DZEditor.AddPointDrawing(new Point3DNormalized(0.25, 0.5, 1));
-            DZEditor.AddPointDrawing(new Point3DNormalized(1, 0.5, 1));*/
         }
 
         void RefreshTimer_Tick(object sender, EventArgs e)
@@ -59,20 +74,7 @@ namespace MouvtorEditor
             this.IsRecording = !this.IsRecording;
         }
 
-        /// <summary>
-        /// Change the record state and show the good picture on the tools bar
-        /// </summary>
-        /// <param name="val">Boolean value</param>
-        private void ChangeStateRecording(bool val)
-        {
-            TSBRecordAndStop.Image = (val) ? Properties.Resources.shape_square : Properties.Resources.bullet_red;
-            TSBRecordAndStop.Text = (val) ? "Stop record" : "Record";
-            TSSLRecordInfo.Text = (val) ? "Recording" : "Not record";
-
-            this.isRecording = val;
-        }
-
-        private void recordToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TSMIRecord_Click(object sender, EventArgs e)
         {
             this.IsRecording = true;
         }

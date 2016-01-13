@@ -269,7 +269,7 @@
             this.TSMIRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.TSMIRecord.Size = new System.Drawing.Size(193, 22);
             this.TSMIRecord.Text = "&Record";
-            this.TSMIRecord.Click += new System.EventHandler(this.recordToolStripMenuItem_Click);
+            this.TSMIRecord.Click += new System.EventHandler(this.TSMIRecord_Click);
             // 
             // TSMIStopRecording
             // 
