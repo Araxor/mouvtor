@@ -32,7 +32,8 @@ namespace MouvtorCommon
             set { _z = value; }
         }
 
-        public Point3DNormalized(double x, double y, double z)
+        public
+            Point3DNormalized(double x, double y, double z)
         {
             _x = x;
             _y = y;

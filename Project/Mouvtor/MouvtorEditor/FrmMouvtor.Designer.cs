@@ -142,6 +142,7 @@
             this.TSCBXInputDevice.Name = "TSCBXInputDevice";
             this.TSCBXInputDevice.Size = new System.Drawing.Size(121, 25);
             this.TSCBXInputDevice.Text = "Input device";
+            this.TSCBXInputDevice.SelectedIndexChanged += new System.EventHandler(this.TSCBXInputDevice_SelectedIndexChanged);
             // 
             // toolStripSeparator3
             // 
@@ -165,6 +166,7 @@
             this.TSBPencil.Name = "TSBPencil";
             this.TSBPencil.Size = new System.Drawing.Size(23, 22);
             this.TSBPencil.Text = "Pencil";
+            this.TSBPencil.Click += new System.EventHandler(this.TSBPencil_Click);
             // 
             // TSBCursor
             // 

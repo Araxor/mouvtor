@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace InputDevices
 {
-    class Mouse : IInputDevice
+    public class Mouse : IInputDevice
     {
        
         #region fields

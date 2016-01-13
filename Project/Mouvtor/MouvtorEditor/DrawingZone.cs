@@ -59,7 +59,7 @@ namespace MouvtorEditor
 
         /// <summary>
         /// Get or set the list of normalized point
-        /// </summary>
+        /// </summary>        
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         private List<Point3DNormalized> PointNormalized

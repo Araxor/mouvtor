@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MouvtorCommon;
+using InputDevices;
 
 namespace MouvtorEditor
 {
@@ -37,13 +39,18 @@ namespace MouvtorEditor
 
             this.isRecording = val;
         }
+        private IInputDevice DrawingDevice;
+        private bool allowDraw = false;
         #endregion
 
         public FrmEditor()
         {
             InitializeComponent();
             DZEditor.InitProperties(Color.Blue, 12);
+
         }
+
+
 
         private void FrmEditor_Load(object sender, EventArgs e)
         {
@@ -61,7 +68,21 @@ namespace MouvtorEditor
 
         void RefreshTimer_Tick(object sender, EventArgs e)
         {
+            if (allowDraw)
+            {
+                DZEditor.AddPointDrawing(DrawingDevice.CurrentNormalizedPosition);
+            }
             Invalidate();
+            
+        }
+
+        void DrawingDevice_StartDrawing(object sender, EventArgs e)
+        {
+            allowDraw = true;
+        }
+        void DrawingDevice_StopDrawing(object sender, EventArgs e)
+        {
+            allowDraw = false;
         }
 
         private void TSMIQuit_Click(object sender, EventArgs e)
@@ -82,6 +103,35 @@ namespace MouvtorEditor
         private void TSMIStopRecording_Click(object sender, EventArgs e)
         {
             this.IsRecording = false;
+        }
+
+        private void TSBPencil_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void TSCBXInputDevice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (TSCBXInputDevice.SelectedIndex)
+            {
+                case 0:
+                    InputDevices.Mouse mouse = new Mouse(this);
+                    DrawingDevice = mouse;
+                    break;
+                case 2:
+                    InputDevices.LeapMotion leap = new LeapMotion();
+                    if (leap.IsConnected)
+                    {
+                        DrawingDevice = leap;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Leap motion disconected");
+                    }
+                    break;
+            }
+            DrawingDevice.StartDrawing += DrawingDevice_StartDrawing;
+            DrawingDevice.StopDrawing += DrawingDevice_StopDrawing;
         }
     }
 }
