@@ -1,4 +1,5 @@
 ﻿using MouvtorCommon;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -50,10 +51,20 @@ namespace MouvtorEditor
         {
             this.DoubleBuffered = true;
             this.Lines = new List<Line>();
+            this.Resize += OnSizeChanged;
         }
         #endregion
 
         #region Methods
+        private void OnSizeChanged(object sender, EventArgs e)
+        {
+            if (this.Lines.Count >= 1)
+            {
+                foreach (Line l in this.Lines)
+                    l.ChangeSize(this.Size);
+            }
+        }
+
         /// <summary>
         /// Start the new draw
         /// </summary>
@@ -94,7 +105,7 @@ namespace MouvtorEditor
                 foreach (Line l in this.Lines)
                     l.Draw(e);
             }
-            
+
 
             if (this.IsDrawing)
                 this.CurrentLine.Draw(e);

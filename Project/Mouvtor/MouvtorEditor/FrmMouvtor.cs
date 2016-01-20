@@ -143,7 +143,6 @@ namespace MouvtorEditor
             }
             DrawingDevice.StartDrawing += DrawingDevice_StartDrawing;
             DrawingDevice.StopDrawing += DrawingDevice_StopDrawing;
-            
         }
     }
 }

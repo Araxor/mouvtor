@@ -93,7 +93,6 @@ namespace MouvtorEditor
             this.Size = s;
             this.PointDrawingList = new List<Point>();
             this.PointNormalized = new List<Point3DNormalized>();
-            this.UnnormalizePoint();
 
             this.PenDrawing = p;
         }
@@ -118,6 +117,12 @@ namespace MouvtorEditor
             this.PointDrawingList.Clear();
             foreach (Point3DNormalized p3n in this.PointNormalized)
                 this.PointDrawingList.Add(new Point((int)(p3n.X * this.Size.Width), (int)(p3n.Y * this.Size.Height)));
+        }
+
+        public void ChangeSize(Size s)
+        {
+            this.Size = s;
+            UnnormalizePoint();
         }
 
         /// <summary>
