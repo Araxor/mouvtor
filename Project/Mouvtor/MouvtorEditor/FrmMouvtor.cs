@@ -60,7 +60,7 @@ namespace MouvtorEditor
 
             // Initialize timer
             this.RefreshTimer = new Timer();
-            this.RefreshTimer.Interval = 100;
+            this.RefreshTimer.Interval = 10;
             this.RefreshTimer.Tick += RefreshTimer_Tick;
             this.RefreshTimer.Enabled = true;
         }

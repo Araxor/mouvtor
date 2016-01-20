@@ -17,7 +17,7 @@ namespace MouvtorEditor
 
         #region Const
         private const int MIN_POINTS = 2;
-        private const int DEFAULT_PEN_WIDTH = 12;
+        private const int DEFAULT_PEN_WIDTH = 10;
         #endregion
 
         #region Properties
