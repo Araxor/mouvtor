@@ -117,6 +117,10 @@ namespace MouvtorEditor
                     InputDevices.Mouse mouse = new Mouse(DZEditor);
                     DrawingDevice = mouse;
                     break;
+
+                case 1:
+                    DrawingDevice = new NovintFalcon();
+                    break;
                 case 2:
                     InputDevices.LeapMotion leap = new LeapMotion();
                     if (leap.IsConnected)

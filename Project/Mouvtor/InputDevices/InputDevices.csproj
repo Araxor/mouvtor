@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>InputDevices</RootNamespace>
     <AssemblyName>InputDevices</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,6 +36,9 @@
   <ItemGroup>
     <Reference Include="LeapCSharp.NET4.0">
       <HintPath>.\LeapCSharp.NET4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpFalcon">
+      <HintPath>..\..\..\..\SharpFalcon\SharpFalcon\bin\Debug\SharpFalcon.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,10 +60,6 @@
     <ProjectReference Include="..\MouvtorCommon\MouvtorCommon.csproj">
       <Project>{a365e38a-5faa-4ce7-85f3-a2b0ba63b610}</Project>
       <Name>MouvtorCommon</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NovintFalcon\NovintFalcon.csproj">
-      <Project>{00a9b025-0fd7-4425-85b5-e23d63b3f01e}</Project>
-      <Name>NovintFalcon</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
