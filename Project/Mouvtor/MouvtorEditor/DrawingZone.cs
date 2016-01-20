@@ -8,113 +8,68 @@ namespace MouvtorEditor
     class DrawingZone : Panel
     {
         #region Fields
-        private Pen _penDrawing;
-        private float _penWidth;
-        private Color _penColor;
-        private List<Point> _pointDrawingList;
-        private List<Point3DNormalized> _pointNormalized;
-        #endregion
-
-        #region Const
-        private const int MIN_POINTS = 2;
-        private const int DEFAULT_PEN_WIDTH = 12;
+        private bool _isDrawing;
+        private List<Line> _lines;
+        private Line _currentLine;
         #endregion
 
         #region Properties
         /// <summary>
-        /// Get or set the pen propeties
+        /// Get or set the current line which is drawing
         /// </summary>
-        public Pen PenDrawing
+        private Line CurrentLine
         {
-            get { return _penDrawing; }
-            set { _penDrawing = value; }
+            get { return _currentLine; }
+            set { _currentLine = value; }
         }
 
         /// <summary>
-        /// Get or set the pen width
+        /// Get or set the lines list
         /// </summary>
-        public float PenWidth
+        private List<Line> Lines
         {
-            get { return _penWidth; }
-            set { _penWidth = value; }
+            get { return _lines; }
+            set { _lines = value; }
         }
 
         /// <summary>
-        /// Get or set the pen color
+        /// Get or set if the line is drawing
         /// </summary>
-        public Color PenColor
+        public bool IsDrawing
         {
-            get { return _penColor; }
-            set { _penColor = value; }
-        }
-
-        /// <summary>
-        /// Get or set the list of point which must be draw
-        /// </summary>
-        public List<Point> PointDrawingList
-        {
-            get { return _pointDrawingList; }
-            set { _pointDrawingList = value; }
-        }
-
-        /// <summary>
-        /// Get or set the list of normalized point
-        /// </summary>        
-        [System.ComponentModel.Browsable(false)]
-        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        private List<Point3DNormalized> PointNormalized
-        {
-            get { return _pointNormalized; }
-            set { _pointNormalized = value; }
+            get { return _isDrawing; }
+            set { _isDrawing = value; }
         }
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Create and initialize a new DrawingZone
-        /// </summary>
-        public DrawingZone()
-            : this(Color.Blue, DEFAULT_PEN_WIDTH)
-        {
-
-        }
-
-        /// <summary>
-        /// Create and initialize a new DrawingZone with color
-        /// </summary>
-        /// <param name="color"></param>
-        public DrawingZone(Color color)
-            : this(color, DEFAULT_PEN_WIDTH)
-        {
-        }
-
-        /// <summary>
         /// Create and initialize a new DrawingZone with color and width
         /// </summary>
-        /// <param name="color"></param>
-        /// <param name="width"></param>
-        public DrawingZone(Color color, float width)
+        public DrawingZone()
         {
-            this.InitProperties(color, width);
+            this.DoubleBuffered = true;
+            this.Lines = new List<Line>();
         }
         #endregion
 
         #region Methods
         /// <summary>
-        /// Initialize all properties with a color and a width which defined in parameters
+        /// Start the new draw
         /// </summary>
-        /// <param name="color">Pen color</param>
-        /// <param name="width">Pen width</param>
-        public void InitProperties(Color color, float width)
+        public void StartDrawing()
         {
-            // Pen initialize
-            this.PenColor = color;
-            this.PenWidth = width;
-            this.PenDrawing = new Pen(this.PenColor, this.PenWidth);
+            this.IsDrawing = true;
+            this.CurrentLine = new Line(this.Size);
+        }
 
-            //List initialize
-            this.PointDrawingList = new List<Point>();
-            this.PointNormalized = new List<Point3DNormalized>();
+        /// <summary>
+        /// Stop the draw
+        /// </summary>
+        public void StopDrawing()
+        {
+            this.IsDrawing = false;
+            this.Lines.Add(this.CurrentLine);
         }
 
         /// <summary>
@@ -123,19 +78,7 @@ namespace MouvtorEditor
         /// <param name="normalizedPoint">Point3DNormalized</param>
         public void AddPointDrawing(Point3DNormalized normalizedPoint)
         {
-
-            this.PointNormalized.Add(normalizedPoint); // Save the normalized point
-            this.UnnormalizePointDrwaingList();
-        }
-
-        /// <summary>
-        /// Normalize all point for the drawing list
-        /// </summary>
-        private void UnnormalizePointDrwaingList()
-        {
-            this.PointDrawingList.Clear();
-            foreach (Point3DNormalized p3n in this.PointNormalized)
-                this.PointDrawingList.Add(new Point((int)(p3n.X * this.Width), (int)(p3n.Y * this.Height)));
+            this.CurrentLine.AddNormalizedPoint(normalizedPoint);
         }
 
         /// <summary>
@@ -145,8 +88,16 @@ namespace MouvtorEditor
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (this.PointDrawingList.Count >= MIN_POINTS)
-                e.Graphics.DrawLines(this.PenDrawing, this.PointDrawingList.ToArray());
+
+            if (this.Lines.Count >= 1)
+            {
+                foreach (Line l in this.Lines)
+                    l.Draw(e);
+            }
+            
+
+            if (this.IsDrawing)
+                this.CurrentLine.Draw(e);
         }
         #endregion
     }

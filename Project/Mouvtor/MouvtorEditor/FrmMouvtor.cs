@@ -45,8 +45,7 @@ namespace MouvtorEditor
         public FrmEditor()
         {
             InitializeComponent();
-            DZEditor.InitProperties(Color.Blue, 12);
-
+            //DZEditor.InitProperties(Color.Blue, 12);
         }
 
 
@@ -60,7 +59,7 @@ namespace MouvtorEditor
 
             // Initialize timer
             this.RefreshTimer = new Timer();
-            this.RefreshTimer.Interval = 100;
+            this.RefreshTimer.Interval = 10;
             this.RefreshTimer.Tick += RefreshTimer_Tick;
             this.RefreshTimer.Enabled = true;
         }
@@ -69,7 +68,15 @@ namespace MouvtorEditor
         {
             if (allowDraw)
             {
+                if (!DZEditor.IsDrawing)
+                    DZEditor.StartDrawing();
+                
                 DZEditor.AddPointDrawing(DrawingDevice.CurrentNormalizedPosition);
+            }
+            else
+            {
+                if (DZEditor.IsDrawing)
+                    DZEditor.StopDrawing();
             }
             Refresh();
             
