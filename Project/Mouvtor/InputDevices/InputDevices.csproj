@@ -38,8 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\MouvtorEditor\LeapCSharp.NET4.0.dll</HintPath>
     </Reference>
-    <Reference Include="SharpFalcon">
-      <HintPath>..\..\..\..\SharpFalcon\SharpFalcon\bin\Debug\SharpFalcon.dll</HintPath>
+    <Reference Include="SharpFalcon, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MouvtorEditor\SharpFalcon.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
