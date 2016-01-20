@@ -70,9 +70,9 @@ namespace InputDevices
         }
         void tmr_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-             
-            float normalizedX = this.X / (float)controlHeight;
-            float normalizedY = this.Y / (float)controlWidth;
+           
+            float normalizedX = this.X / (float)controlWidth;
+            float normalizedY = this.Y / (float)controlHeight;
 
             CurrentNormalizedPosition = new Point3DNormalized(normalizedX,normalizedY,0);
         }
