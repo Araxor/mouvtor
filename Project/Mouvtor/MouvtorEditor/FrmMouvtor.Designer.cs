@@ -350,10 +350,10 @@
             this.DZEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DZEditor.Location = new System.Drawing.Point(0, 49);
             this.DZEditor.Name = "DZEditor";
-            this.DZEditor.PenColor = System.Drawing.Color.Empty;
+            /*this.DZEditor.PenColor = System.Drawing.Color.Empty;
             this.DZEditor.PenDrawing = null;
             this.DZEditor.PenWidth = 12F;
-            this.DZEditor.PointDrawingList = null;
+            this.DZEditor.PointDrawingList = null;*/
             this.DZEditor.Size = new System.Drawing.Size(868, 449);
             this.DZEditor.TabIndex = 3;
             // 
