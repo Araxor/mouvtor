@@ -87,7 +87,7 @@ namespace InputDevices
                         MessageBox.Show(exc.Message);
                     }*/
                 }
-                if (!this.controller.HasFocus)
+                if (fingers.IsEmpty)
                 {                   
                     try
                     {
