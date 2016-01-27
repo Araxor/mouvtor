@@ -75,7 +75,7 @@ namespace InputDevices
                 var hand = hands[0];
                 var fingers = hand.Fingers;
                 
-                if ((hands[0].IsRight) && (fingers[FINGER_ID] != Finger.Invalid) && (fingers[FINGER_ID].IsExtended))
+                if ((fingers[FINGER_ID] != Finger.Invalid) && (fingers[FINGER_ID].IsExtended))
                 {
                     var normailizedPos = frame.InteractionBox.NormalizePoint(fingers[FINGER_ID].StabilizedTipPosition, false);
                     CurrentNormalizedPosition = new Point3DNormalized(normailizedPos.x, 1 - normailizedPos.y, 1 - normailizedPos.z);
