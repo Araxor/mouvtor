@@ -55,6 +55,42 @@ Exemple:
 55,23,42,2535
 55,66,27,2645
 ```
+##Fenêtres
+###Editeur
+![Editor](./Images/Editor.png)
+
+1. Ouvrir un fichier contenant les tracés 
+2. Sauvegarder les tracés dans un fichier
+3. Enregistre le schéma
+4. Choix du type d'entrée 
+ - Souris
+ - Souris 3D
+ - Leap Motion
+ - Ecran tactile
+5. Tracer un trait droit
+6. Dessin libre
+7. Curseur pour faire des modifications du tracé
+8. outil de sélection
+9. Zone de dessin
+10. Barre de statut
+11. Regroupement de tous les outils cité ci-dessus
+
+###Player
+![Player](./Images/Player.png)
+
+1. Ouvrir un fichier contenant les tracés 
+2. Voir l'animation du tracé
+3. Enregistre le schéma
+4. Choix du type d'entrée 
+ - Souris
+ - Souris 3D
+ - Leap Motion
+ - Ecran tactile
+5. Zone de dessin
+6. Barre de statut
+7. Regroupement de tous les outils cité ci-dessus
+
+
 
 
 ## Planning
