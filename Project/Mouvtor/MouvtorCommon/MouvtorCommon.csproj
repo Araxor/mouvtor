@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IInputDevice.cs" />
+    <Compile Include="MouvmlReader.cs" />
+    <Compile Include="MouvmlWriter.cs" />
     <Compile Include="PathStep.cs" />
     <Compile Include="Point3DNormalized.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
