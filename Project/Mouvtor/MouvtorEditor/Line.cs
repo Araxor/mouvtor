@@ -17,7 +17,7 @@ namespace MouvtorEditor
         #endregion
 
         #region Const
-        private const int DEPTH = 2;
+        private const int DEPTH = 5;
         #endregion
 
         #region Properties

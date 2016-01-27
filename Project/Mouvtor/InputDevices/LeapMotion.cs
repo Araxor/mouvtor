@@ -88,8 +88,7 @@ namespace InputDevices
                     }*/
                 }
                 if (!this.controller.HasFocus)
-                {
-                   
+                {                   
                     try
                     {
                         StopDrawing(this, EventArgs.Empty);
