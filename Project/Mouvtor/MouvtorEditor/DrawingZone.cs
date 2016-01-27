@@ -81,6 +81,7 @@ namespace MouvtorEditor
         {
             this.IsDrawing = false;
             this.Lines.Add(this.CurrentLine);
+            this.CurrentLine = null;
         }
 
         /// <summary>
@@ -100,12 +101,8 @@ namespace MouvtorEditor
         {
             base.OnPaint(e);
 
-            if (this.Lines.Count >= 1)
-            {
-                foreach (Line l in this.Lines)
-                    l.Draw(e);
-            }
-
+            foreach (Line l in this.Lines)
+                l.Draw(e);
 
             if (this.IsDrawing)
                 this.CurrentLine.Draw(e);
