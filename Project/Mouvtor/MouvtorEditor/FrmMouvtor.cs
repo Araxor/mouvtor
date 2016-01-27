@@ -59,7 +59,7 @@ namespace MouvtorEditor
 
             // Initialize timer
             this.RefreshTimer = new Timer();
-            this.RefreshTimer.Interval = 10;
+            this.RefreshTimer.Interval = 1;
             this.RefreshTimer.Tick += RefreshTimer_Tick;
             this.RefreshTimer.Enabled = true;
         }
@@ -143,7 +143,15 @@ namespace MouvtorEditor
             }
             DrawingDevice.StartDrawing += DrawingDevice_StartDrawing;
             DrawingDevice.StopDrawing += DrawingDevice_StopDrawing;
-            
+        }
+
+        private void DZEditor_SizeChanged(object sender, EventArgs e)
+        {
+            if (DrawingDevice is InputDevices.Mouse)
+            {
+                InputDevices.Mouse mouse = new Mouse(DZEditor);
+                DrawingDevice = mouse;
+            }
         }
     }
 }

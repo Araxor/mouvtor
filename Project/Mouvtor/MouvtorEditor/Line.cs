@@ -11,14 +11,13 @@ namespace MouvtorEditor
     class Line
     {
         #region Fields
-        private List<Point> _pointDrawingList;
         private List<Point3DNormalized> _pointNormalized;
         private Size _size;
         private Pen _penDrawing;
         #endregion
 
         #region Const
-        private const int DEFAULT_WIDTH = 10;
+        private const int DEPTH = 5;
         #endregion
 
         #region Properties
@@ -41,15 +40,6 @@ namespace MouvtorEditor
         }
 
         /// <summary>
-        /// Get or set the list of point which must be draw
-        /// </summary>
-        public List<Point> PointDrawingList
-        {
-            get { return _pointDrawingList; }
-            set { _pointDrawingList = value; }
-        }
-
-        /// <summary>
         /// Get or set the list of normalized point
         /// </summary>        
         [System.ComponentModel.Browsable(false)]
@@ -68,7 +58,7 @@ namespace MouvtorEditor
         /// <param name="width">Width size</param>
         /// <param name="height">Height size</param>
         public Line(int width, int height)
-            : this(new Size(width, height), new Pen(Color.Blue, DEFAULT_WIDTH))
+            : this(new Size(width, height), new Pen(Color.Blue, DEPTH))
         {
 
         }
@@ -78,7 +68,7 @@ namespace MouvtorEditor
         /// </summary>
         /// <param name="s">Size</param>
         public Line(Size s)
-            : this(s, new Pen(Color.Blue, DEFAULT_WIDTH))
+            : this(s, new Pen(Color.Blue, DEPTH))
         {
 
         }
@@ -91,9 +81,7 @@ namespace MouvtorEditor
         public Line(Size s, Pen p)
         {
             this.Size = s;
-            this.PointDrawingList = new List<Point>();
             this.PointNormalized = new List<Point3DNormalized>();
-            this.UnnormalizePoint();
 
             this.PenDrawing = p;
         }
@@ -107,17 +95,23 @@ namespace MouvtorEditor
         public void AddNormalizedPoint(Point3DNormalized p3n)
         {
             this.PointNormalized.Add(p3n);
-            this.UnnormalizePoint();
         }
 
         /// <summary>
-        /// Normalize all point for the drawing list
+        /// Normalize a point
         /// </summary>
-        private void UnnormalizePoint()
+        private Point UnnormalizePoint(Point3DNormalized p3n)
         {
-            this.PointDrawingList.Clear();
-            foreach (Point3DNormalized p3n in this.PointNormalized)
-                this.PointDrawingList.Add(new Point((int)(p3n.X * this.Size.Width), (int)(p3n.Y * this.Size.Height)));
+            return new Point((int)(p3n.X * this.Size.Width), (int)(p3n.Y * this.Size.Height));
+        }
+
+        /// <summary>
+        /// Modify the window size
+        /// </summary>
+        /// <param name="s"></param>
+        public void ChangeSize(Size s)
+        {
+            this.Size = s;
         }
 
         /// <summary>
@@ -126,9 +120,10 @@ namespace MouvtorEditor
         /// <param name="pe"></param>
         public void Draw(PaintEventArgs pe)
         {
-            if (this.PointDrawingList.Count > 2)
+            for (int i = 0; i < this.PointNormalized.Count - 1; ++i)
             {
-                pe.Graphics.DrawLines(this.PenDrawing, this.PointDrawingList.ToArray());
+                this.PenDrawing.Width = (float)(this.PointNormalized[i].Z * DEPTH + DEPTH);
+                pe.Graphics.DrawLine(this.PenDrawing, UnnormalizePoint(this.PointNormalized[i]), UnnormalizePoint(this.PointNormalized[i + 1]));
             }
         }
         #endregion

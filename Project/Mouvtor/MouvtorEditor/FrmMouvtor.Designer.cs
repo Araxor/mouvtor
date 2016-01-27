@@ -83,7 +83,7 @@
             this.TSBRectangleSelection});
             this.ToolStrip.Location = new System.Drawing.Point(0, 24);
             this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.Size = new System.Drawing.Size(868, 25);
+            this.ToolStrip.Size = new System.Drawing.Size(784, 25);
             this.ToolStrip.TabIndex = 0;
             this.ToolStrip.Text = "TSMenu";
             // 
@@ -194,7 +194,7 @@
             this.TSMITools});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(868, 24);
+            this.MenuStrip.Size = new System.Drawing.Size(784, 24);
             this.MenuStrip.TabIndex = 1;
             this.MenuStrip.Text = "menuStrip1";
             // 
@@ -331,10 +331,10 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TSSLRecordInfo});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 498);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 540);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.statusStrip1.Size = new System.Drawing.Size(868, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -348,21 +348,19 @@
             // DZEditor
             // 
             this.DZEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DZEditor.IsDrawing = false;
             this.DZEditor.Location = new System.Drawing.Point(0, 49);
             this.DZEditor.Name = "DZEditor";
-            /*this.DZEditor.PenColor = System.Drawing.Color.Empty;
-            this.DZEditor.PenDrawing = null;
-            this.DZEditor.PenWidth = 12F;
-            this.DZEditor.PointDrawingList = null;*/
-            this.DZEditor.Size = new System.Drawing.Size(868, 449);
+            this.DZEditor.Size = new System.Drawing.Size(784, 491);
             this.DZEditor.TabIndex = 3;
+            this.DZEditor.SizeChanged += new System.EventHandler(this.DZEditor_SizeChanged);
             // 
             // FrmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(868, 520);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.DZEditor);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ToolStrip);
