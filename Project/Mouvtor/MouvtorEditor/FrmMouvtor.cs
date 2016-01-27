@@ -144,5 +144,14 @@ namespace MouvtorEditor
             DrawingDevice.StartDrawing += DrawingDevice_StartDrawing;
             DrawingDevice.StopDrawing += DrawingDevice_StopDrawing;
         }
+
+        private void DZEditor_SizeChanged(object sender, EventArgs e)
+        {
+            if (DrawingDevice is InputDevices.Mouse)
+            {
+                InputDevices.Mouse mouse = new Mouse(DZEditor);
+                DrawingDevice = mouse;
+            }
+        }
     }
 }
