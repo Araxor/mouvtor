@@ -45,7 +45,6 @@ namespace MouvtorEditor
         public FrmEditor()
         {
             InitializeComponent();
-            //DZEditor.InitProperties(Color.Blue, 12);
         }
 
 
