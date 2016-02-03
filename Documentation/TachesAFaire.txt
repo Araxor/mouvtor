@@ -1,0 +1,4 @@
+Modification de points ( profondeur, position)
+Stockage du temps
+Palette de couleur
+Rejouer les tracés

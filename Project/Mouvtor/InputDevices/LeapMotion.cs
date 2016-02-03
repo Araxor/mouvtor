@@ -1,8 +1,8 @@
 ﻿using System;
 using Leap;
 using MouvtorCommon;
-using System.Timers;
 using System.Windows.Forms;
+using System.Threading;
 
 
 namespace InputDevices
@@ -45,6 +45,7 @@ namespace InputDevices
             this.StartDrawing += OnStartDrawing;
             this.StopDrawing += OnStopDrawing;
             this.Controller = new Controller();
+            Thread.Sleep(1000);
             tmr = new System.Timers.Timer();
             tmr.AutoReset = true;
             tmr.Interval = 1;
@@ -61,9 +62,7 @@ namespace InputDevices
 
         void tmr_Tick(object sender, EventArgs e)
         {
-            Frame frame = Controller.Frame();
-
-          
+            Frame frame = Controller.Frame();          
 
             if (controller == null || !controller.IsConnected)
             {
@@ -100,7 +99,7 @@ namespace InputDevices
                 }
             }
         }
-        public void disconect() {
+        public void Disconect() {
             tmr.Enabled = false;
             this.controller.Dispose();
         }

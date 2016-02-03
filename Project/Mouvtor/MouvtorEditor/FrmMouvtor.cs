@@ -122,7 +122,7 @@ namespace MouvtorEditor
                 case 0:
                     if (DrawingDevice is LeapMotion)
                     {
-                        (DrawingDevice as LeapMotion).disconect();
+                        (DrawingDevice as LeapMotion).Disconect();
                     }
                     InputDevices.Mouse mouse = new Mouse(DZEditor);
                     DrawingDevice = mouse;
