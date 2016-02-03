@@ -44,13 +44,13 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.TSBPlayPause = new System.Windows.Forms.ToolStripButton();
             this.TSBRecordAndStop = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.TSCBXInputDevice = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TSSLRecordInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.TSSLPlayInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.TSSLInpitDeviceType = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.TSCBXInputDevice = new System.Windows.Forms.ToolStripComboBox();
             this.MenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -202,6 +202,28 @@
             this.TSBRecordAndStop.Text = "Record";
             this.TSBRecordAndStop.Click += new System.EventHandler(this.TSBRecordAndStop_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel1.Text = "Input device :";
+            // 
+            // TSCBXInputDevice
+            // 
+            this.TSCBXInputDevice.Items.AddRange(new object[] {
+            "Mouse",
+            "3D Mouse",
+            "Leap motion",
+            "Touch screen"});
+            this.TSCBXInputDevice.Name = "TSCBXInputDevice";
+            this.TSCBXInputDevice.Size = new System.Drawing.Size(121, 25);
+            this.TSCBXInputDevice.Text = "Input device";
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -231,28 +253,6 @@
             this.TSSLInpitDeviceType.Name = "TSSLInpitDeviceType";
             this.TSSLInpitDeviceType.Size = new System.Drawing.Size(108, 17);
             this.TSSLInpitDeviceType.Text = "Input Device Type :";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
-            this.toolStripLabel1.Text = "Input device :";
-            // 
-            // TSCBXInputDevice
-            // 
-            this.TSCBXInputDevice.Items.AddRange(new object[] {
-            "Mouse",
-            "3D Mouse",
-            "Leap motion",
-            "Touch screen"});
-            this.TSCBXInputDevice.Name = "TSCBXInputDevice";
-            this.TSCBXInputDevice.Size = new System.Drawing.Size(121, 25);
-            this.TSCBXInputDevice.Text = "Input device";
             // 
             // FrmMouvtorPlayer
             // 
