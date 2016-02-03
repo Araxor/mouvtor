@@ -99,8 +99,10 @@ namespace InputDevices
                     }
                 }
             }
-
-
+        }
+        public void disconect() {
+            tmr.Enabled = false;
+            this.controller.Dispose();
         }
         #endregion
     }

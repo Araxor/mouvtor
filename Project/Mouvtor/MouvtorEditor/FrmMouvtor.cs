@@ -117,9 +117,13 @@ namespace MouvtorEditor
 
         private void TSCBXInputDevice_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (TSCBXInputDevice.SelectedIndex)
+           switch (TSCBXInputDevice.SelectedIndex)
             {
                 case 0:
+                    if (DrawingDevice is LeapMotion)
+                    {
+                        (DrawingDevice as LeapMotion).disconect();
+                    }
                     InputDevices.Mouse mouse = new Mouse(DZEditor);
                     DrawingDevice = mouse;
                     break;
@@ -136,7 +140,7 @@ namespace MouvtorEditor
                     else
                     {
                         MessageBox.Show("Leap motion disconected");
-                    }
+                    }                    
                     break;
                      
             }
