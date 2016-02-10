@@ -9,16 +9,16 @@ using System.Xml.Linq;
 
 namespace MouvtorCommon
 {
-    class MouvmlWriter
+    public class MouvmlWriter
     {
         const string MOUVML_VERSION = "0.1";
         private XDocument Document { get; set; }
         private XElement RootElement { get; set; }
-        private string Path { get; set; }
+        private string FilePath { get; set; }
 
-        public MouvmlWriter(string path) 
+        public MouvmlWriter(string filePath) 
         {
-            Path = path;
+            FilePath = filePath;
             InitDocument();
         }
 
@@ -29,24 +29,25 @@ namespace MouvtorCommon
             Document.Add(RootElement);
         }
 
-        public void AddPath(IEnumerable<PathStep> path)
+        public void AddPath(Path path)
         {
-            var PathElement = new XElement("path");
+            var PathElement = new XElement("path", new XAttribute("timestamp", path.Timestamp));
 
             foreach (var step in path)
             {
-                PathElement.Add("point", 
+                PathElement.Add(new XElement(
+                    "point", 
                     new XAttribute("x", step.NormalizedPosition.X),
                     new XAttribute("y", step.NormalizedPosition.Y),
                     new XAttribute("z", step.NormalizedPosition.Z),
                     new XAttribute("timestamp", step.Timestamp)
-                );
+                ));
             }
 
             RootElement.Add(PathElement);
         }
 
-        public void AddPaths(IEnumerable<IEnumerable<PathStep>> paths)
+        public void AddPaths(IEnumerable<Path> paths)
         {
             foreach (var path in paths)
             {
@@ -56,7 +57,7 @@ namespace MouvtorCommon
 
         public void Save() 
         {
-            Document.Save(Path);
+            Document.Save(FilePath);
         }
     }
 }

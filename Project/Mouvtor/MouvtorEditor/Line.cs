@@ -42,12 +42,20 @@ namespace MouvtorEditor
         /// <summary>
         /// Get or set the list of normalized point
         /// </summary>        
+        //[System.ComponentModel.Browsable(false)]
+        //[System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        //public List<Point3DNormalized> Points
+        //{
+        //    get { return _pointNormalized; }
+        //    private set { _pointNormalized = value; }
+        //}
+
         [System.ComponentModel.Browsable(false)]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        private List<Point3DNormalized> PointNormalized
+        public Path Path
         {
-            get { return _pointNormalized; }
-            set { _pointNormalized = value; }
+            get;
+            private set;
         }
         #endregion
 
@@ -57,8 +65,8 @@ namespace MouvtorEditor
         /// </summary>
         /// <param name="width">Width size</param>
         /// <param name="height">Height size</param>
-        public Line(int width, int height)
-            : this(new Size(width, height), new Pen(Color.Blue, DEPTH))
+        public Line(int width, int height, long timestamp)
+            : this(new Size(width, height), new Pen(Color.Blue, DEPTH), timestamp)
         {
 
         }
@@ -67,8 +75,8 @@ namespace MouvtorEditor
         /// Create a line with the size for the normalization
         /// </summary>
         /// <param name="s">Size</param>
-        public Line(Size s)
-            : this(s, new Pen(Color.Blue, DEPTH))
+        public Line(Size s, long timestamp)
+            : this(s, new Pen(Color.Blue, DEPTH), timestamp)
         {
 
         }
@@ -78,10 +86,10 @@ namespace MouvtorEditor
         /// </summary>
         /// <param name="s">Size</param>
         /// <param name="p">Pen</param>
-        public Line(Size s, Pen p)
+        public Line(Size s, Pen p, long timestamp)
         {
             this.Size = s;
-            this.PointNormalized = new List<Point3DNormalized>();
+            this.Path = new Path(timestamp);
 
             this.PenDrawing = p;
         }
@@ -92,9 +100,9 @@ namespace MouvtorEditor
         /// Add a normalized point
         /// </summary>
         /// <param name="p3n">The new point 3D normalized</param>
-        public void AddNormalizedPoint(Point3DNormalized p3n)
+        public void AddNormalizedPoint(Point3DNormalized p3n, long timestamp)
         {
-            this.PointNormalized.Add(p3n);
+            this.Path.Add(new PathStep(p3n, timestamp - Path.Timestamp));
         }
 
         /// <summary>
@@ -120,10 +128,14 @@ namespace MouvtorEditor
         /// <param name="pe"></param>
         public void Draw(PaintEventArgs pe)
         {
-            for (int i = 0; i < this.PointNormalized.Count - 1; ++i)
+            for (int i = 0; i < this.Path.Count - 1; ++i)
             {
-                this.PenDrawing.Width = (float)(this.PointNormalized[i].Z * DEPTH + DEPTH);
-                pe.Graphics.DrawLine(this.PenDrawing, UnnormalizePoint(this.PointNormalized[i]), UnnormalizePoint(this.PointNormalized[i + 1]));
+                this.PenDrawing.Width = (float)(this.Path[i].NormalizedPosition.Z * DEPTH + DEPTH);
+                pe.Graphics.DrawLine(
+                    this.PenDrawing, 
+                    UnnormalizePoint(this.Path[i].NormalizedPosition), 
+                    UnnormalizePoint(this.Path[i + 1].NormalizedPosition)
+                );
             }
         }
         #endregion

@@ -156,5 +156,32 @@ namespace MouvtorEditor
                 DrawingDevice = mouse;
             }
         }
+
+        private void TSBSave_Click(object sender, EventArgs e)
+        {
+            var sfd = new SaveFileDialog()
+            {
+                DefaultExt = "mouvml"
+            };
+
+            var result = sfd.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                Save(sfd.FileName);
+            }
+        }
+
+        private void Save(string path)
+        {
+            var writer = new MouvmlWriter(path);
+
+            foreach (var line in DZEditor.Lines)
+            {
+                writer.AddPath(line.Path);
+            }
+
+            writer.Save();
+        }
     }
 }

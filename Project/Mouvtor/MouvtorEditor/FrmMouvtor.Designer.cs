@@ -105,6 +105,7 @@
             this.TSBSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TSBSave.Size = new System.Drawing.Size(23, 22);
             this.TSBSave.Text = "Save";
+            this.TSBSave.Click += new System.EventHandler(this.TSBSave_Click);
             // 
             // toolStripSeparator1
             // 
@@ -129,7 +130,7 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(74, 22);
             this.toolStripLabel1.Text = "Input device :";
             // 
             // TSCBXInputDevice
@@ -208,7 +209,7 @@
             this.toolStripMenuItem2,
             this.TSMIQuit});
             this.TSMIFile.Name = "TSMIFile";
-            this.TSMIFile.Size = new System.Drawing.Size(37, 20);
+            this.TSMIFile.Size = new System.Drawing.Size(35, 20);
             this.TSMIFile.Text = "&File";
             // 
             // TSMIOpen
@@ -216,20 +217,20 @@
             this.TSMIOpen.Image = global::MouvtorEditor.Properties.Resources.folder_stand;
             this.TSMIOpen.Name = "TSMIOpen";
             this.TSMIOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.TSMIOpen.Size = new System.Drawing.Size(175, 22);
+            this.TSMIOpen.Size = new System.Drawing.Size(171, 22);
             this.TSMIOpen.Text = "&Open";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(168, 6);
             // 
             // TSMISave
             // 
             this.TSMISave.Image = global::MouvtorEditor.Properties.Resources.diskette;
             this.TSMISave.Name = "TSMISave";
             this.TSMISave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.TSMISave.Size = new System.Drawing.Size(175, 22);
+            this.TSMISave.Size = new System.Drawing.Size(171, 22);
             this.TSMISave.Text = "&Save";
             // 
             // TSMISaveAs
@@ -238,20 +239,20 @@
             this.TSMISaveAs.Name = "TSMISaveAs";
             this.TSMISaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.S)));
-            this.TSMISaveAs.Size = new System.Drawing.Size(175, 22);
+            this.TSMISaveAs.Size = new System.Drawing.Size(171, 22);
             this.TSMISaveAs.Text = "Sav&e as";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(168, 6);
             // 
             // TSMIQuit
             // 
             this.TSMIQuit.Image = global::MouvtorEditor.Properties.Resources.cross;
             this.TSMIQuit.Name = "TSMIQuit";
             this.TSMIQuit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.TSMIQuit.Size = new System.Drawing.Size(175, 22);
+            this.TSMIQuit.Size = new System.Drawing.Size(171, 22);
             this.TSMIQuit.Text = "&Quit";
             this.TSMIQuit.Click += new System.EventHandler(this.TSMIQuit_Click);
             // 
@@ -261,7 +262,7 @@
             this.TSMIRecord,
             this.TSMIStopRecording});
             this.TSMIAction.Name = "TSMIAction";
-            this.TSMIAction.Size = new System.Drawing.Size(54, 20);
+            this.TSMIAction.Size = new System.Drawing.Size(49, 20);
             this.TSMIAction.Text = "A&ction";
             // 
             // TSMIRecord
@@ -269,7 +270,7 @@
             this.TSMIRecord.Image = global::MouvtorEditor.Properties.Resources.bullet_red;
             this.TSMIRecord.Name = "TSMIRecord";
             this.TSMIRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.TSMIRecord.Size = new System.Drawing.Size(193, 22);
+            this.TSMIRecord.Size = new System.Drawing.Size(182, 22);
             this.TSMIRecord.Text = "&Record";
             this.TSMIRecord.Click += new System.EventHandler(this.TSMIRecord_Click);
             // 
@@ -278,7 +279,7 @@
             this.TSMIStopRecording.Image = global::MouvtorEditor.Properties.Resources.shape_square;
             this.TSMIStopRecording.Name = "TSMIStopRecording";
             this.TSMIStopRecording.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.TSMIStopRecording.Size = new System.Drawing.Size(193, 22);
+            this.TSMIStopRecording.Size = new System.Drawing.Size(182, 22);
             this.TSMIStopRecording.Text = "S&top recording";
             this.TSMIStopRecording.Click += new System.EventHandler(this.TSMIStopRecording_Click);
             // 
@@ -290,7 +291,7 @@
             this.TSMIMouse,
             this.TSMIRectangleSelection});
             this.TSMITools.Name = "TSMITools";
-            this.TSMITools.Size = new System.Drawing.Size(48, 20);
+            this.TSMITools.Size = new System.Drawing.Size(44, 20);
             this.TSMITools.Text = "Too&ls";
             // 
             // TSMIDrawLine
@@ -299,7 +300,7 @@
             this.TSMIDrawLine.Name = "TSMIDrawLine";
             this.TSMIDrawLine.ShortcutKeyDisplayString = "";
             this.TSMIDrawLine.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.TSMIDrawLine.Size = new System.Drawing.Size(218, 22);
+            this.TSMIDrawLine.Size = new System.Drawing.Size(206, 22);
             this.TSMIDrawLine.Text = "Draw &line";
             // 
             // TSMIPencil
@@ -308,7 +309,7 @@
             this.TSMIPencil.Name = "TSMIPencil";
             this.TSMIPencil.ShortcutKeyDisplayString = "";
             this.TSMIPencil.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.TSMIPencil.Size = new System.Drawing.Size(218, 22);
+            this.TSMIPencil.Size = new System.Drawing.Size(206, 22);
             this.TSMIPencil.Text = "&Pencil";
             // 
             // TSMIMouse
@@ -316,7 +317,7 @@
             this.TSMIMouse.Image = global::MouvtorEditor.Properties.Resources.cursor;
             this.TSMIMouse.Name = "TSMIMouse";
             this.TSMIMouse.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.TSMIMouse.Size = new System.Drawing.Size(218, 22);
+            this.TSMIMouse.Size = new System.Drawing.Size(206, 22);
             this.TSMIMouse.Text = "&Mouse";
             // 
             // TSMIRectangleSelection
@@ -324,7 +325,7 @@
             this.TSMIRectangleSelection.Image = global::MouvtorEditor.Properties.Resources.select_restangular;
             this.TSMIRectangleSelection.Name = "TSMIRectangleSelection";
             this.TSMIRectangleSelection.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.TSMIRectangleSelection.Size = new System.Drawing.Size(218, 22);
+            this.TSMIRectangleSelection.Size = new System.Drawing.Size(206, 22);
             this.TSMIRectangleSelection.Text = "Rect&angle selection";
             // 
             // statusStrip1
@@ -342,7 +343,7 @@
             // 
             this.TSSLRecordInfo.BackColor = System.Drawing.SystemColors.Control;
             this.TSSLRecordInfo.Name = "TSSLRecordInfo";
-            this.TSSLRecordInfo.Size = new System.Drawing.Size(64, 17);
+            this.TSSLRecordInfo.Size = new System.Drawing.Size(58, 17);
             this.TSSLRecordInfo.Text = "Not record";
             // 
             // DZEditor

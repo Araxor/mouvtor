@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace MouvtorCommon
 {
-    class MouvmlReader : IEnumerable<IEnumerable<PathStep>>
+    public class MouvmlReader : IEnumerable<Path>
     {
         #region Private properties
         private string Path { get; set; }
@@ -22,7 +22,7 @@ namespace MouvtorCommon
         #endregion
 
         #region IEnumerable implementation
-        public IEnumerator<IEnumerable<PathStep>> GetEnumerator()
+        public IEnumerator<Path> GetEnumerator()
         {
             return parsePaths().GetEnumerator();
         }
@@ -34,12 +34,15 @@ namespace MouvtorCommon
         #endregion
 
         #region Private methods
-        private IEnumerable<IEnumerable<PathStep>> parsePaths()
+        private IEnumerable<Path> parsePaths()
         {
             var document = XDocument.Load(Path);
             foreach (var pathElement in document.Elements("path"))
             {
-                yield return parsePath(pathElement);
+                yield return new Path(
+                    Convert.ToInt64(pathElement.Attribute("timestamp").Value), 
+                    parsePath(pathElement)
+                );
             }
         }
 

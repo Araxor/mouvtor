@@ -1,6 +1,7 @@
 ﻿using MouvtorCommon;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace MouvtorEditor
         private bool _isDrawing;
         private List<Line> _lines;
         private Line _currentLine;
+        private Stopwatch _stopWatch;
         #endregion
 
         #region Properties
@@ -27,10 +29,10 @@ namespace MouvtorEditor
         /// <summary>
         /// Get or set the lines list
         /// </summary>
-        private List<Line> Lines
+        public List<Line> Lines
         {
             get { return _lines; }
-            set { _lines = value; }
+            private set { _lines = value; }
         }
 
         /// <summary>
@@ -40,6 +42,19 @@ namespace MouvtorEditor
         {
             get { return _isDrawing; }
             set { _isDrawing = value; }
+        }
+
+        private Stopwatch Stopwatch
+        {
+            get 
+            {
+                if (_stopWatch == null)
+                {
+                    _stopWatch = new Stopwatch();
+                    _stopWatch.Start();
+                }
+                return _stopWatch; 
+            }
         }
         #endregion
 
@@ -76,7 +91,8 @@ namespace MouvtorEditor
         public void StartDrawing()
         {
             this.IsDrawing = true;
-            this.CurrentLine = new Line(this.Size);
+
+            this.CurrentLine = new Line(this.Size, Stopwatch.ElapsedMilliseconds);
         }
 
         /// <summary>
@@ -95,7 +111,7 @@ namespace MouvtorEditor
         /// <param name="normalizedPoint">Point3DNormalized</param>
         public void AddPointDrawing(Point3DNormalized normalizedPoint)
         {
-            this.CurrentLine.AddNormalizedPoint(normalizedPoint);
+            this.CurrentLine.AddNormalizedPoint(normalizedPoint, Stopwatch.ElapsedMilliseconds);
         }
 
         /// <summary>
