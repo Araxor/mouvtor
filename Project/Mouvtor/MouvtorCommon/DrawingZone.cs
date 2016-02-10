@@ -5,9 +5,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MouvtorEditor
+namespace MouvtorCommon
 {
-    class DrawingZone : Panel
+    public class DrawingZone : Panel
     {
         #region Fields
         private bool _isDrawing;

@@ -59,7 +59,7 @@
             this.TSMIRectangleSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TSSLRecordInfo = new System.Windows.Forms.ToolStripStatusLabel();
-            this.DZEditor = new MouvtorEditor.DrawingZone();
+            this.DZEditor = new MouvtorCommon.DrawingZone();
             this.ToolStrip.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -415,8 +415,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel TSSLRecordInfo;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private DrawingZone DZEditor;
-
+        private MouvtorCommon.DrawingZone DZEditor;
     }
 }
 

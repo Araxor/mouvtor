@@ -6,12 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MouvtorEditor
+namespace MouvtorCommon
 {
-    class Line
+    public class Line
     {
         #region Fields
-        private List<Point3DNormalized> _pointNormalized;
         private Size _size;
         private Pen _penDrawing;
         #endregion
