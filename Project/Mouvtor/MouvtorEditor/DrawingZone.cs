@@ -56,6 +56,11 @@ namespace MouvtorEditor
         #endregion
 
         #region Methods
+        /// <summary>
+        /// When the size is changed. Each lines is adapted for the new window size
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnSizeChanged(object sender, EventArgs e)
         {
             if (this.Lines.Count >= 1)
