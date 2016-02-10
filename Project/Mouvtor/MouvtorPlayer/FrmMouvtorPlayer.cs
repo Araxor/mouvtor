@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MouvtorCommon;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,8 @@ namespace MouvtorPlayer
         #region Properties
         private bool IsPlaying { set { ChangePlayState(value); } get { return isPlaying; } }
         private bool IsRecording { set { ChangeRecordState(value); } get { return isRecording; } }
+        private List<Path> Drawing { get; set; }
+        private DrawingPlayer DrawingPlayer { get; set; }
         #endregion
 
         public FrmMouvtorPlayer()
@@ -43,6 +46,11 @@ namespace MouvtorPlayer
             TSSLPlayInfo.Text = (val) ? "Playing" : "Not play";
 
             this.isPlaying = val;
+
+            if (isPlaying)
+            {
+                PlayDrawing();
+            }
         }
 
         /// <summary>
@@ -92,6 +100,39 @@ namespace MouvtorPlayer
         private void TSMIStopRecord_Click(object sender, EventArgs e)
         {
             this.IsRecording = false;
+        }
+
+        private void TSBOpen_Click(object sender, EventArgs e)
+        {
+            var ofd = new OpenFileDialog();
+
+            var result = ofd.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                var reader = new MouvmlReader(ofd.FileName);
+                Drawing = reader.ToList();
+            }
+        }
+
+        private void PlayDrawing()
+        {
+            if (Drawing != null)
+            {
+                DrawingPlayer = new DrawingPlayer(Drawing, dzPlayer);
+
+                DrawingPlayer.DrawingEnded += () =>
+                {
+                    IsPlaying = false;
+                    DrawingPlayer = null;
+                };
+
+                DrawingPlayer.Play();
+            }
+            else
+            {
+                IsPlaying = false;
+            }
         }
     }
 }

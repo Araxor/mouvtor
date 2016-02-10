@@ -37,26 +37,27 @@ namespace MouvtorCommon
         private IEnumerable<Path> parsePaths()
         {
             var document = XDocument.Load(Path);
-            foreach (var pathElement in document.Elements("path"))
+            foreach (var pathElement in document.Element("mouvml").Elements("path"))
             {
-                yield return new Path(
-                    Convert.ToInt64(pathElement.Attribute("timestamp").Value), 
-                    parsePath(pathElement)
-                );
+                yield return ParsePath(pathElement);
             }
         }
 
-        private IEnumerable<PathStep> parsePath(XElement element)
+        private Path ParsePath(XElement pathElement)
         {
-            foreach (var pointElement in element.Elements("point"))
+            var path = new Path(Convert.ToInt64(pathElement.Attribute("timestamp").Value));
+
+            foreach (var pointElement in pathElement.Elements("point"))
             {
-                yield return new PathStep(
-                        Convert.ToDouble(pointElement.Attribute("x").Value),
-                        Convert.ToDouble(pointElement.Attribute("y").Value),
-                        Convert.ToDouble(pointElement.Attribute("z").Value),
-                        Convert.ToInt64(pointElement.Attribute("timestamp").Value)
-                );
+                path.Add(new PathStep(
+                    Convert.ToDouble(pointElement.Attribute("x").Value),
+                    Convert.ToDouble(pointElement.Attribute("y").Value),
+                    Convert.ToDouble(pointElement.Attribute("z").Value),
+                    Convert.ToInt64(pointElement.Attribute("timestamp").Value)
+                ));
             }
+
+            return path;
         }
         #endregion
     }

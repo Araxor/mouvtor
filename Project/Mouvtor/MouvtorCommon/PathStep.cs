@@ -18,7 +18,7 @@ namespace MouvtorCommon
         }
 
         public PathStep(double x, double y, double z, long timestamp)
-            : this(new Point3DNormalized(), timestamp)
+            : this(new Point3DNormalized(x, y, z), timestamp)
         { }
     }
 }
