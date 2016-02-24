@@ -11,6 +11,7 @@ namespace MouvtorCommon
     public class Line
     {
         #region Fields
+        private List<Point3DNormalized> _pointAverage;
         private Size _size;
         private Pen _penDrawing;
         #endregion
@@ -20,6 +21,12 @@ namespace MouvtorCommon
         #endregion
 
         #region Properties
+        public List<Point3DNormalized> PointAverage
+        {
+            get { return _pointAverage; }
+            set { _pointAverage = value; }
+        }
+
         /// <summary>
         /// Get or set the pen
         /// </summary>
@@ -89,6 +96,7 @@ namespace MouvtorCommon
         {
             this.Size = s;
             this.Path = new Path(timestamp);
+            this.PointAverage = new List<Point3DNormalized>();
 
             this.PenDrawing = p;
         }
@@ -102,6 +110,7 @@ namespace MouvtorCommon
         public void AddNormalizedPoint(Point3DNormalized p3n, long timestamp)
         {
             this.Path.Add(new PathStep(p3n, timestamp - Path.Timestamp));
+            //CleanPointList();
         }
 
         /// <summary>
@@ -136,7 +145,47 @@ namespace MouvtorCommon
                     UnnormalizePoint(this.Path[i + 1].NormalizedPosition)
                 );
             }
+
+            /*for (int i = 0; i < this.PointAverage.Count - 1; ++i)
+            {
+                this.PenDrawing.Width = (float)(this.PointAverage[i].Z * DEPTH + DEPTH);
+                pe.Graphics.DrawLine(this.PenDrawing, UnnormalizePoint(this.PointAverage[i]), UnnormalizePoint(this.PointAverage[i + 1]));
+            }*/
         }
+        /*
+        private void CleanPointList()
+        {
+            List<Point3DNormalized> tmpPoints = this.PointNormalized;
+            double xAverage = 0.0d;
+            double yAverage = 0.0d;
+            double zAverage = 0.0d;
+
+            for (int i = 0; i < 10; ++i)
+            {
+                xAverage += tmpPoints[i].X;
+                yAverage += tmpPoints[i].Y;
+                zAverage += tmpPoints[i].Z;
+            }
+
+            this.PointAverage.Add(new Point3DNormalized(xAverage / 10, yAverage / 10, zAverage / 10));
+
+
+
+            //this.PointAverage = tmpPoints;
+            /*if (this.PointNormalized.Count == 60)
+            {
+                List<Point3DNormalized> tmpPoints = this.PointNormalized;
+                //this.PointAverage.Add(tmpPoints[0]);
+
+                for (int i = 0; i < tmpPoints.Count; ++i)
+                {
+                    this.PointAverage.Add(tmpPoints[i]);
+                }
+                //this.PointNormalized.Clear();
+            }
+
+
+        }*/
         #endregion
     }
 }
