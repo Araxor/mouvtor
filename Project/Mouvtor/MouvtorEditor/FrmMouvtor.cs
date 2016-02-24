@@ -197,7 +197,8 @@ namespace MouvtorEditor
         {
             var sfd = new SaveFileDialog()
             {
-                DefaultExt = "mouvml"
+                DefaultExt = "mouvml",
+                Filter = "MouvML files (*.mouvml)|*.mouvml"
             };
 
             var result = sfd.ShowDialog();
@@ -208,9 +209,5 @@ namespace MouvtorEditor
                 Save();
             }
         }
-
-        
-
-        
     }
 }
