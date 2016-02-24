@@ -31,6 +31,11 @@ namespace MouvtorCommon
         public bool IsDrawing { get; set; }
 
         /// <summary>
+        /// Position of the cursor 
+        /// </summary>
+        public Point3DNormalized CursorPosition { get; set; }
+
+        /// <summary>
         /// Get the stopwatch that calculates the points timestamp
         /// </summary>
         private Stopwatch Stopwatch
@@ -126,9 +131,26 @@ namespace MouvtorCommon
 
             foreach (Line l in Lines)
                 l.Draw(e);
-
+            
             if (IsDrawing)
                 CurrentLine.Draw(e);
+
+            DrawCursor(e.Graphics);
+        }
+
+        /// <summary>
+        /// Draws a cursor at CursorPosition in the zone
+        /// </summary>
+        /// <param name="g"></param>
+        private void DrawCursor(Graphics g) 
+        {
+            var pen = new Pen(Color.Green);
+            var z = (int)(CursorPosition.Z * 5 + 5);
+            var halfz = z / 2f;
+            var x = (int)(CursorPosition.X * this.Size.Width - halfz);
+            var y = (int)(CursorPosition.Y * this.Size.Height - halfz);
+           
+            g.DrawEllipse(pen, x, y, z, z);
         }
         #endregion
     }

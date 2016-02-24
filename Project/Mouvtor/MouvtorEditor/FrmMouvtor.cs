@@ -75,8 +75,8 @@ namespace MouvtorEditor
                 if (DZEditor.IsDrawing)
                     DZEditor.StopDrawing();
             }
+            DZEditor.CursorPosition = DrawingDevice.CurrentNormalizedPosition;
             Refresh();
-            
         }
 
         void DrawingDevice_StartDrawing(object sender, EventArgs e)
