@@ -11,9 +11,6 @@ namespace MouvtorCommon
     public class DrawingZone : Panel
     {
         #region Fields
-        private bool _isDrawing;
-        private List<Line> _lines;
-        private Line _currentLine;
         private Stopwatch _stopWatch;
         #endregion
 
@@ -21,30 +18,21 @@ namespace MouvtorCommon
         /// <summary>
         /// Get or set the current line which is drawing
         /// </summary>
-        private Line CurrentLine
-        {
-            get { return _currentLine; }
-            set { _currentLine = value; }
-        }
+        private Line CurrentLine { get; set; }
 
         /// <summary>
         /// Get or set the lines list
         /// </summary>
-        public List<Line> Lines
-        {
-            get { return _lines; }
-            private set { _lines = value; }
-        }
+        public List<Line> Lines { get; private set; }
 
         /// <summary>
         /// Get or set if the line is drawing
         /// </summary>
-        public bool IsDrawing
-        {
-            get { return _isDrawing; }
-            set { _isDrawing = value; }
-        }
+        public bool IsDrawing { get; set; }
 
+        /// <summary>
+        /// Get the stopwatch that calculates the points timestamp
+        /// </summary>
         private Stopwatch Stopwatch
         {
             get 
@@ -56,6 +44,10 @@ namespace MouvtorCommon
                 }
                 return _stopWatch; 
             }
+            set
+            {
+                _stopWatch = value;
+            }
         }
         #endregion
 
@@ -65,9 +57,9 @@ namespace MouvtorCommon
         /// </summary>
         public DrawingZone()
         {
-            this.DoubleBuffered = true;
-            this.Lines = new List<Line>();
-            this.Resize += OnSizeChanged;
+            DoubleBuffered = true;
+            Lines = new List<Line>();
+            Resize += OnSizeChanged;
         }
         #endregion
 
@@ -79,10 +71,10 @@ namespace MouvtorCommon
         /// <param name="e"></param>
         private void OnSizeChanged(object sender, EventArgs e)
         {
-            if (this.Lines.Count >= 1)
+            if (Lines.Count >= 1)
             {
-                foreach (Line l in this.Lines)
-                    l.ChangeSize(this.Size);
+                foreach (Line l in Lines)
+                    l.ChangeSize(Size);
             }
         }
 
@@ -91,9 +83,8 @@ namespace MouvtorCommon
         /// </summary>
         public void StartDrawing()
         {
-            this.IsDrawing = true;
-
-            this.CurrentLine = new Line(this.Size, Stopwatch.ElapsedMilliseconds);
+            IsDrawing = true;
+            CurrentLine = new Line(Size, Stopwatch.ElapsedMilliseconds);
         }
 
         /// <summary>
@@ -101,9 +92,9 @@ namespace MouvtorCommon
         /// </summary>
         public void StopDrawing()
         {
-            this.IsDrawing = false;
-            this.Lines.Add(this.CurrentLine);
-            this.CurrentLine = null;
+            IsDrawing = false;
+            Lines.Add(CurrentLine);
+            CurrentLine = null;
         }
 
         /// <summary>
@@ -112,7 +103,17 @@ namespace MouvtorCommon
         /// <param name="normalizedPoint">Point3DNormalized</param>
         public void AddPointDrawing(Point3DNormalized normalizedPoint)
         {
-            this.CurrentLine.AddNormalizedPoint(normalizedPoint, Stopwatch.ElapsedMilliseconds);
+            CurrentLine.AddNormalizedPoint(normalizedPoint, Stopwatch.ElapsedMilliseconds);
+        }
+
+        /// <summary>
+        /// Resets the drawing zone to its initial state
+        /// </summary>
+        public void Clear()
+        {
+            StopDrawing();
+            Lines = new List<Line>();
+            Stopwatch = null;
         }
 
         /// <summary>
@@ -123,11 +124,11 @@ namespace MouvtorCommon
         {
             base.OnPaint(e);
 
-            foreach (Line l in this.Lines)
+            foreach (Line l in Lines)
                 l.Draw(e);
 
-            if (this.IsDrawing)
-                this.CurrentLine.Draw(e);
+            if (IsDrawing)
+                CurrentLine.Draw(e);
         }
         #endregion
     }

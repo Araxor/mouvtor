@@ -16,30 +16,31 @@ namespace MouvtorEditor
     {
 
         #region Fields
-        private Timer refreshTimer;
-        private bool isRecording;
+        private bool _isRecording;
         #endregion
 
         #region Properties
-        public Timer RefreshTimer { get { return refreshTimer; } set { refreshTimer = value; } }
-        private bool IsRecording { set { ChangeStateRecording(value); } get { return isRecording; } }
-        #endregion
+        public Timer RefreshTimer { get; set; }
+        private bool IsRecording 
+        { 
+            set 
+            {
+                this._isRecording = value;
+                TSBRecordAndStop.Image = IsRecording ? Properties.Resources.shape_square : Properties.Resources.bullet_red;
+                TSBRecordAndStop.Text = IsRecording ? "Stop record" : "Record";
+                TSSLRecordInfo.Text = IsRecording ? "Recording" : "Not record";
 
-        #region Personnal methods
-        /// <summary>
-        /// Change the record state and show the good picture on the tools bar
-        /// </summary>
-        /// <param name="val">Boolean value</param>
-        private void ChangeStateRecording(bool val)
-        {
-            TSBRecordAndStop.Image = (val) ? Properties.Resources.shape_square : Properties.Resources.bullet_red;
-            TSBRecordAndStop.Text = (val) ? "Stop record" : "Record";
-            TSSLRecordInfo.Text = (val) ? "Recording" : "Not record";
+                if (IsRecording)
+                {
+                    DZEditor.Clear();
+                }
+            } 
 
-            this.isRecording = val;
+            get { return _isRecording; } 
         }
-        private IInputDevice DrawingDevice;
-        private bool allowDraw = false;
+
+        private IInputDevice DrawingDevice { get; set; }
+        private bool AllowDraw { get; set; }
         #endregion
 
         public FrmEditor()
@@ -47,14 +48,11 @@ namespace MouvtorEditor
             InitializeComponent();
         }
 
-
-
         private void FrmEditor_Load(object sender, EventArgs e)
         {
             TSCBXInputDevice.SelectedIndex = 0;
             this.DoubleBuffered = true;
             this.IsRecording = false;
-
 
             // Initialize timer
             this.RefreshTimer = new Timer();
@@ -65,7 +63,7 @@ namespace MouvtorEditor
 
         void RefreshTimer_Tick(object sender, EventArgs e)
         {
-            if (allowDraw)
+            if (AllowDraw && IsRecording)
             {
                 if (!DZEditor.IsDrawing)
                     DZEditor.StartDrawing();
@@ -83,11 +81,11 @@ namespace MouvtorEditor
 
         void DrawingDevice_StartDrawing(object sender, EventArgs e)
         {
-            allowDraw = true;
+            AllowDraw = true;
         }
         void DrawingDevice_StopDrawing(object sender, EventArgs e)
         {
-            allowDraw = false;
+            AllowDraw = false;
         }
 
         private void TSMIQuit_Click(object sender, EventArgs e)
@@ -142,7 +140,6 @@ namespace MouvtorEditor
                         MessageBox.Show("Leap motion disconected");
                     }                    
                     break;
-                     
             }
             DrawingDevice.StartDrawing += DrawingDevice_StartDrawing;
             DrawingDevice.StopDrawing += DrawingDevice_StopDrawing;

@@ -142,7 +142,6 @@
             "Touch screen"});
             this.TSCBXInputDevice.Name = "TSCBXInputDevice";
             this.TSCBXInputDevice.Size = new System.Drawing.Size(121, 25);
-            this.TSCBXInputDevice.Text = "Input device";
             this.TSCBXInputDevice.SelectedIndexChanged += new System.EventHandler(this.TSCBXInputDevice_SelectedIndexChanged);
             // 
             // toolStripSeparator3
@@ -153,6 +152,7 @@
             // TSBLine
             // 
             this.TSBLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSBLine.Enabled = false;
             this.TSBLine.Image = global::MouvtorEditor.Properties.Resources.draw_line;
             this.TSBLine.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBLine.Name = "TSBLine";
@@ -162,6 +162,7 @@
             // TSBPencil
             // 
             this.TSBPencil.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSBPencil.Enabled = false;
             this.TSBPencil.Image = global::MouvtorEditor.Properties.Resources.pencil;
             this.TSBPencil.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBPencil.Name = "TSBPencil";
@@ -172,6 +173,7 @@
             // TSBCursor
             // 
             this.TSBCursor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSBCursor.Enabled = false;
             this.TSBCursor.Image = global::MouvtorEditor.Properties.Resources.cursor;
             this.TSBCursor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBCursor.Name = "TSBCursor";
@@ -181,6 +183,7 @@
             // TSBRectangleSelection
             // 
             this.TSBRectangleSelection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSBRectangleSelection.Enabled = false;
             this.TSBRectangleSelection.Image = global::MouvtorEditor.Properties.Resources.select_restangular;
             this.TSBRectangleSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBRectangleSelection.Name = "TSBRectangleSelection";
@@ -343,8 +346,8 @@
             // 
             this.TSSLRecordInfo.BackColor = System.Drawing.SystemColors.Control;
             this.TSSLRecordInfo.Name = "TSSLRecordInfo";
-            this.TSSLRecordInfo.Size = new System.Drawing.Size(58, 17);
-            this.TSSLRecordInfo.Text = "Not record";
+            this.TSSLRecordInfo.Size = new System.Drawing.Size(72, 17);
+            this.TSSLRecordInfo.Text = "Not recording";
             // 
             // DZEditor
             // 
