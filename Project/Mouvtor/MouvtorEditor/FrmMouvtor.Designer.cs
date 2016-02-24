@@ -91,6 +91,7 @@
             // TSBOpen
             // 
             this.TSBOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSBOpen.Enabled = false;
             this.TSBOpen.Image = global::MouvtorEditor.Properties.Resources.folder_stand;
             this.TSBOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TSBOpen.Name = "TSBOpen";
@@ -219,6 +220,7 @@
             // 
             // TSMIOpen
             // 
+            this.TSMIOpen.Enabled = false;
             this.TSMIOpen.Image = global::MouvtorEditor.Properties.Resources.folder_stand;
             this.TSMIOpen.Name = "TSMIOpen";
             this.TSMIOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
@@ -303,6 +305,7 @@
             // 
             // TSMIDrawLine
             // 
+            this.TSMIDrawLine.Enabled = false;
             this.TSMIDrawLine.Image = global::MouvtorEditor.Properties.Resources.draw_line;
             this.TSMIDrawLine.Name = "TSMIDrawLine";
             this.TSMIDrawLine.ShortcutKeyDisplayString = "";
@@ -312,6 +315,7 @@
             // 
             // TSMIPencil
             // 
+            this.TSMIPencil.Enabled = false;
             this.TSMIPencil.Image = global::MouvtorEditor.Properties.Resources.pencil;
             this.TSMIPencil.Name = "TSMIPencil";
             this.TSMIPencil.ShortcutKeyDisplayString = "";
@@ -321,6 +325,7 @@
             // 
             // TSMIMouse
             // 
+            this.TSMIMouse.Enabled = false;
             this.TSMIMouse.Image = global::MouvtorEditor.Properties.Resources.cursor;
             this.TSMIMouse.Name = "TSMIMouse";
             this.TSMIMouse.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
@@ -329,6 +334,7 @@
             // 
             // TSMIRectangleSelection
             // 
+            this.TSMIRectangleSelection.Enabled = false;
             this.TSMIRectangleSelection.Image = global::MouvtorEditor.Properties.Resources.select_restangular;
             this.TSMIRectangleSelection.Name = "TSMIRectangleSelection";
             this.TSMIRectangleSelection.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
