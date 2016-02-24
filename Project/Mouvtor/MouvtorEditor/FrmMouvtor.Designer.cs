@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditor));
             this.ToolStrip = new System.Windows.Forms.ToolStrip();
             this.TSBOpen = new System.Windows.Forms.ToolStripButton();
             this.TSBSave = new System.Windows.Forms.ToolStripButton();
@@ -235,6 +236,7 @@
             this.TSMISave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.TSMISave.Size = new System.Drawing.Size(171, 22);
             this.TSMISave.Text = "&Save";
+            this.TSMISave.Click += new System.EventHandler(this.TSMISave_Click);
             // 
             // TSMISaveAs
             // 
@@ -244,6 +246,7 @@
             | System.Windows.Forms.Keys.S)));
             this.TSMISaveAs.Size = new System.Drawing.Size(171, 22);
             this.TSMISaveAs.Text = "Sav&e as";
+            this.TSMISaveAs.Click += new System.EventHandler(this.TSMISaveAs_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -351,6 +354,7 @@
             // 
             // DZEditor
             // 
+            this.DZEditor.CursorPosition = ((MouvtorCommon.Point3DNormalized)(resources.GetObject("DZEditor.CursorPosition")));
             this.DZEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DZEditor.IsDrawing = false;
             this.DZEditor.Location = new System.Drawing.Point(0, 49);

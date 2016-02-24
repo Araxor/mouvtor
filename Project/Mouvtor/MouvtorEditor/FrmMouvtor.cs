@@ -41,6 +41,7 @@ namespace MouvtorEditor
 
         private IInputDevice DrawingDevice { get; set; }
         private bool AllowDraw { get; set; }
+        private string SavePath { get; set; }
         #endregion
 
         public FrmEditor()
@@ -156,6 +157,39 @@ namespace MouvtorEditor
 
         private void TSBSave_Click(object sender, EventArgs e)
         {
+            Save();
+        }
+
+        private void TSMISave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void TSMISaveAs_Click(object sender, EventArgs e)
+        {
+            SaveAs();
+        }
+
+        private void Save()
+        {
+            if (SavePath == null)
+            {
+                SaveAs();
+                return;
+            }
+
+            var writer = new MouvmlWriter(SavePath);
+
+            foreach (var line in DZEditor.Lines)
+            {
+                writer.AddPath(line.Path);
+            }
+
+            writer.Save();
+        }
+
+        private void SaveAs()
+        {
             var sfd = new SaveFileDialog()
             {
                 DefaultExt = "mouvml"
@@ -165,20 +199,13 @@ namespace MouvtorEditor
 
             if (result == DialogResult.OK)
             {
-                Save(sfd.FileName);
+                SavePath = sfd.FileName;
+                Save();
             }
         }
 
-        private void Save(string path)
-        {
-            var writer = new MouvmlWriter(path);
+        
 
-            foreach (var line in DZEditor.Lines)
-            {
-                writer.AddPath(line.Path);
-            }
-
-            writer.Save();
-        }
+        
     }
 }
