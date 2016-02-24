@@ -8,8 +8,11 @@ namespace MouvtorCommon
 {
     public class Path : List<PathStep>
     {
+        #region Properties
         public long Timestamp {get;  private set;}
+        #endregion
 
+        #region Constructor
         public Path(long timestamp)
         {
             Timestamp = timestamp;
@@ -20,5 +23,6 @@ namespace MouvtorCommon
         {
             AddRange(points);
         }
+        #endregion
     }
 }
