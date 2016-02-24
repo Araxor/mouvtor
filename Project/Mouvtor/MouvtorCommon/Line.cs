@@ -102,6 +102,9 @@ namespace MouvtorCommon
         public void AddNormalizedPoint(Point3DNormalized p3n, long timestamp)
         {
             this.Path.Add(new PathStep(p3n, timestamp - Path.Timestamp));
+            
+            if (this.Path.Count % 10 == 0)
+                this.Path.DeleteUselessPoint();
         }
 
         /// <summary>
