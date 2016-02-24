@@ -91,7 +91,10 @@ Exemple:
 7. Regroupement de tous les outils cité ci-dessus
 
 
-
+## Installation de la souris 3D
+ - Installer le logiciel "setup.Falcon V4"
+ - Accpeter l'installation du driver
+ - 
 
 ## Planning
 
