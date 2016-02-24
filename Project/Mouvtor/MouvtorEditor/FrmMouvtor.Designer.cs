@@ -136,6 +136,7 @@
             // 
             // TSCBXInputDevice
             // 
+            this.TSCBXInputDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TSCBXInputDevice.Items.AddRange(new object[] {
             "Mouse",
             "3D Mouse",
