@@ -178,6 +178,11 @@ namespace MouvtorEditor
                 return;
             }
 
+            if (IsRecording)
+            {
+                IsRecording = false;
+            }
+
             var writer = new MouvmlWriter(SavePath);
 
             foreach (var line in DZEditor.Lines)
