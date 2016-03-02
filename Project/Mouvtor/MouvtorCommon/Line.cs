@@ -99,11 +99,11 @@ namespace MouvtorCommon
         /// Add a normalized point
         /// </summary>
         /// <param name="p3n">The new point 3D normalized</param>
-        public void AddNormalizedPoint(Point3DNormalized p3n, long timestamp)
+        public void AddNormalizedPoint(Point3DNormalized p3n, long timestamp, TypeDrawZone t)
         {
             this.Path.Add(new PathStep(p3n, timestamp - Path.Timestamp));
             
-            if (this.Path.Count % 10 == 0)
+            if (this.Path.Count % 10 == 0 && t != TypeDrawZone.Player)
                 this.Path.DeleteUselessPoint();
         }
 

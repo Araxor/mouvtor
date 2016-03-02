@@ -8,6 +8,11 @@ using System.Linq;
 
 namespace MouvtorCommon
 {
+    public enum TypeDrawZone
+    {
+        Editor, Player
+    }
+
     public class DrawingZone : Panel
     {
         #region Fields
@@ -15,6 +20,7 @@ namespace MouvtorCommon
         #endregion
 
         #region Properties
+        public TypeDrawZone TypeDrawZone { get; set; }
         /// <summary>
         /// Get or set the current line which is drawing
         /// </summary>
@@ -40,14 +46,14 @@ namespace MouvtorCommon
         /// </summary>
         private Stopwatch Stopwatch
         {
-            get 
+            get
             {
                 if (_stopWatch == null)
                 {
                     _stopWatch = new Stopwatch();
                     _stopWatch.Start();
                 }
-                return _stopWatch; 
+                return _stopWatch;
             }
             set
             {
@@ -57,13 +63,21 @@ namespace MouvtorCommon
         #endregion
 
         #region Constructor
+
+        public DrawingZone()
+            : this(TypeDrawZone.Editor)
+        {
+
+        }
+
         /// <summary>
         /// Create and initialize a new DrawingZone with color and width
         /// </summary>
-        public DrawingZone()
+        public DrawingZone(TypeDrawZone type)
         {
             DoubleBuffered = true;
             Lines = new List<Line>();
+            this.TypeDrawZone = type;
             Resize += OnSizeChanged;
         }
         #endregion
@@ -108,7 +122,7 @@ namespace MouvtorCommon
         /// <param name="normalizedPoint">Point3DNormalized</param>
         public void AddPointDrawing(Point3DNormalized normalizedPoint)
         {
-            CurrentLine.AddNormalizedPoint(normalizedPoint, Stopwatch.ElapsedMilliseconds);
+            CurrentLine.AddNormalizedPoint(normalizedPoint, Stopwatch.ElapsedMilliseconds, this.TypeDrawZone);
         }
 
         /// <summary>
@@ -131,7 +145,7 @@ namespace MouvtorCommon
 
             foreach (Line l in Lines)
                 l.Draw(e);
-            
+
             if (IsDrawing)
                 CurrentLine.Draw(e);
 
@@ -142,14 +156,14 @@ namespace MouvtorCommon
         /// Draws a cursor at CursorPosition in the zone
         /// </summary>
         /// <param name="g"></param>
-        private void DrawCursor(Graphics g) 
+        private void DrawCursor(Graphics g)
         {
             var pen = new Pen(Color.Green);
             var z = (int)(CursorPosition.Z * 5 + 5);
             var halfz = z / 2f;
             var x = (int)(CursorPosition.X * this.Size.Width - halfz);
             var y = (int)(CursorPosition.Y * this.Size.Height - halfz);
-           
+
             g.DrawEllipse(pen, x, y, z, z);
         }
         #endregion

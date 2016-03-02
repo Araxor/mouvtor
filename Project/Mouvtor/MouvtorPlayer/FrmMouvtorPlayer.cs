@@ -70,6 +70,7 @@ namespace MouvtorPlayer
         {
             this.IsPlaying = false;
             this.IsRecording = false;
+
         }
 
         private void TSBPlayPause_Click(object sender, EventArgs e)

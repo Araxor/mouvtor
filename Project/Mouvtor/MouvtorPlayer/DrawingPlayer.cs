@@ -29,6 +29,7 @@ namespace MouvtorPlayer
         {
             Drawing = drawing;
             DrawingZone = drawingZone;
+            DrawingZone.TypeDrawZone = TypeDrawZone.Player;
 
             MakeDrawingActions();
         }
