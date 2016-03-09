@@ -130,14 +130,19 @@ namespace MouvtorCommon
         /// <param name="pe"></param>
         public void Draw(PaintEventArgs pe)
         {
-            for (int i = 0; i < this.Path.Count - 1; ++i)
+            for (int i = 0; i < this.Path.Count - 4; ++i)
             {
                 this.PenDrawing.Width = (float)(this.Path[i].NormalizedPosition.Z * DEPTH + DEPTH);
-                pe.Graphics.DrawLine(
+                /*pe.Graphics.DrawLine(
                     this.PenDrawing, 
                     UnnormalizePoint(this.Path[i].NormalizedPosition), 
                     UnnormalizePoint(this.Path[i + 1].NormalizedPosition)
-                );
+                );*/
+                pe.Graphics.DrawBezier(this.PenDrawing, 
+                    UnnormalizePoint(this.Path[i].NormalizedPosition), 
+                    UnnormalizePoint(this.Path[i + 1].NormalizedPosition),
+                    UnnormalizePoint(this.Path[i + 2].NormalizedPosition),
+                    UnnormalizePoint(this.Path[i + 3].NormalizedPosition));
             }
         }
         #endregion

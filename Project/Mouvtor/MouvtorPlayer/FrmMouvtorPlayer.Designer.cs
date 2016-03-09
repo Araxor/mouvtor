@@ -28,13 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMouvtorPlayer));
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.TSMIFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.TSMIQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIAction = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.TSMIRecord = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIStopRecord = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.TSBOpen = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.TSBPlayPause = new System.Windows.Forms.ToolStripButton();
+            this.TSBRecordAndStop = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.TSCBXInputDevice = new System.Windows.Forms.ToolStripComboBox();
@@ -42,15 +52,6 @@
             this.TSSLRecordInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.TSSLPlayInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.TSSLInpitDeviceType = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TSBOpen = new System.Windows.Forms.ToolStripButton();
-            this.TSBPlayPause = new System.Windows.Forms.ToolStripButton();
-            this.TSBRecordAndStop = new System.Windows.Forms.ToolStripButton();
-            this.TSMIOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIQuit = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIPlay = new System.Windows.Forms.ToolStripMenuItem();
-            this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIRecord = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIStopRecord = new System.Windows.Forms.ToolStripMenuItem();
             this.dzPlayer = new MouvtorCommon.DrawingZone();
             this.MenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -75,13 +76,31 @@
             this.toolStripMenuItem1,
             this.TSMIQuit});
             this.TSMIFile.Name = "TSMIFile";
-            this.TSMIFile.Size = new System.Drawing.Size(35, 20);
+            this.TSMIFile.Size = new System.Drawing.Size(37, 20);
             this.TSMIFile.Text = "&File";
+            // 
+            // TSMIOpen
+            // 
+            this.TSMIOpen.Image = global::MouvtorPlayer.Properties.Resources.folder_stand;
+            this.TSMIOpen.Name = "TSMIOpen";
+            this.TSMIOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.TSMIOpen.Size = new System.Drawing.Size(152, 22);
+            this.TSMIOpen.Text = "&Open";
+            this.TSMIOpen.Click += new System.EventHandler(this.TSBOpen_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(137, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // TSMIQuit
+            // 
+            this.TSMIQuit.Image = global::MouvtorPlayer.Properties.Resources.cross;
+            this.TSMIQuit.Name = "TSMIQuit";
+            this.TSMIQuit.ShortcutKeyDisplayString = "Ctrl+Q";
+            this.TSMIQuit.Size = new System.Drawing.Size(152, 22);
+            this.TSMIQuit.Text = "&Quit";
+            this.TSMIQuit.Click += new System.EventHandler(this.TSMIQuit_Click);
             // 
             // TSMIAction
             // 
@@ -92,13 +111,49 @@
             this.TSMIRecord,
             this.TSMIStopRecord});
             this.TSMIAction.Name = "TSMIAction";
-            this.TSMIAction.Size = new System.Drawing.Size(49, 20);
+            this.TSMIAction.Size = new System.Drawing.Size(54, 20);
             this.TSMIAction.Text = "&Action";
+            // 
+            // TSMIPlay
+            // 
+            this.TSMIPlay.Image = global::MouvtorPlayer.Properties.Resources.control_play_blue;
+            this.TSMIPlay.Name = "TSMIPlay";
+            this.TSMIPlay.ShortcutKeyDisplayString = "Ctrl+P";
+            this.TSMIPlay.Size = new System.Drawing.Size(176, 22);
+            this.TSMIPlay.Text = "&Play";
+            this.TSMIPlay.Click += new System.EventHandler(this.TSMIPlay_Click);
+            // 
+            // pauseToolStripMenuItem
+            // 
+            this.pauseToolStripMenuItem.Image = global::MouvtorPlayer.Properties.Resources.control_pause_blue;
+            this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
+            this.pauseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.pauseToolStripMenuItem.Text = "Pa&use";
+            this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(165, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(173, 6);
+            // 
+            // TSMIRecord
+            // 
+            this.TSMIRecord.Image = global::MouvtorPlayer.Properties.Resources.bullet_red;
+            this.TSMIRecord.Name = "TSMIRecord";
+            this.TSMIRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.TSMIRecord.Size = new System.Drawing.Size(176, 22);
+            this.TSMIRecord.Text = "&Record";
+            this.TSMIRecord.Click += new System.EventHandler(this.TSMIRecord_Click);
+            // 
+            // TSMIStopRecord
+            // 
+            this.TSMIStopRecord.Image = global::MouvtorPlayer.Properties.Resources.shape_square;
+            this.TSMIStopRecord.Name = "TSMIStopRecord";
+            this.TSMIStopRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+            this.TSMIStopRecord.Size = new System.Drawing.Size(176, 22);
+            this.TSMIStopRecord.Text = "S&top record";
+            this.TSMIStopRecord.Click += new System.EventHandler(this.TSMIStopRecord_Click);
             // 
             // toolStrip1
             // 
@@ -116,10 +171,40 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // TSBOpen
+            // 
+            this.TSBOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSBOpen.Image = global::MouvtorPlayer.Properties.Resources.folder_stand;
+            this.TSBOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSBOpen.Name = "TSBOpen";
+            this.TSBOpen.Size = new System.Drawing.Size(23, 22);
+            this.TSBOpen.Text = "Open";
+            this.TSBOpen.Click += new System.EventHandler(this.TSBOpen_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // TSBPlayPause
+            // 
+            this.TSBPlayPause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSBPlayPause.Image = global::MouvtorPlayer.Properties.Resources.control_play_blue;
+            this.TSBPlayPause.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSBPlayPause.Name = "TSBPlayPause";
+            this.TSBPlayPause.Size = new System.Drawing.Size(23, 22);
+            this.TSBPlayPause.Text = "Play";
+            this.TSBPlayPause.Click += new System.EventHandler(this.TSBPlayPause_Click);
+            // 
+            // TSBRecordAndStop
+            // 
+            this.TSBRecordAndStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSBRecordAndStop.Image = global::MouvtorPlayer.Properties.Resources.bullet_red;
+            this.TSBRecordAndStop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSBRecordAndStop.Name = "TSBRecordAndStop";
+            this.TSBRecordAndStop.Size = new System.Drawing.Size(23, 22);
+            this.TSBRecordAndStop.Text = "Record";
+            this.TSBRecordAndStop.Click += new System.EventHandler(this.TSBRecordAndStop_Click);
             // 
             // toolStripSeparator2
             // 
@@ -129,7 +214,7 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(74, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
             this.toolStripLabel1.Text = "Input device :";
             // 
             // TSCBXInputDevice
@@ -158,113 +243,32 @@
             // TSSLRecordInfo
             // 
             this.TSSLRecordInfo.Name = "TSSLRecordInfo";
-            this.TSSLRecordInfo.Size = new System.Drawing.Size(58, 17);
+            this.TSSLRecordInfo.Size = new System.Drawing.Size(64, 17);
             this.TSSLRecordInfo.Text = "Not record";
             // 
             // TSSLPlayInfo
             // 
             this.TSSLPlayInfo.Name = "TSSLPlayInfo";
-            this.TSSLPlayInfo.Size = new System.Drawing.Size(59, 17);
+            this.TSSLPlayInfo.Size = new System.Drawing.Size(65, 17);
             this.TSSLPlayInfo.Text = "Not played";
             // 
             // TSSLInpitDeviceType
             // 
             this.TSSLInpitDeviceType.Name = "TSSLInpitDeviceType";
-            this.TSSLInpitDeviceType.Size = new System.Drawing.Size(102, 17);
+            this.TSSLInpitDeviceType.Size = new System.Drawing.Size(108, 17);
             this.TSSLInpitDeviceType.Text = "Input Device Type :";
-            // 
-            // TSBOpen
-            // 
-            this.TSBOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSBOpen.Image = global::MouvtorPlayer.Properties.Resources.folder_stand;
-            this.TSBOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TSBOpen.Name = "TSBOpen";
-            this.TSBOpen.Size = new System.Drawing.Size(23, 22);
-            this.TSBOpen.Text = "Open";
-            this.TSBOpen.Click += new System.EventHandler(this.TSBOpen_Click);
-            // 
-            // TSBPlayPause
-            // 
-            this.TSBPlayPause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSBPlayPause.Image = global::MouvtorPlayer.Properties.Resources.control_play_blue;
-            this.TSBPlayPause.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TSBPlayPause.Name = "TSBPlayPause";
-            this.TSBPlayPause.Size = new System.Drawing.Size(23, 22);
-            this.TSBPlayPause.Text = "Play";
-            this.TSBPlayPause.Click += new System.EventHandler(this.TSBPlayPause_Click);
-            // 
-            // TSBRecordAndStop
-            // 
-            this.TSBRecordAndStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSBRecordAndStop.Image = global::MouvtorPlayer.Properties.Resources.bullet_red;
-            this.TSBRecordAndStop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TSBRecordAndStop.Name = "TSBRecordAndStop";
-            this.TSBRecordAndStop.Size = new System.Drawing.Size(23, 22);
-            this.TSBRecordAndStop.Text = "Record";
-            this.TSBRecordAndStop.Click += new System.EventHandler(this.TSBRecordAndStop_Click);
-            // 
-            // TSMIOpen
-            // 
-            this.TSMIOpen.Image = global::MouvtorPlayer.Properties.Resources.folder_stand;
-            this.TSMIOpen.Name = "TSMIOpen";
-            this.TSMIOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.TSMIOpen.Size = new System.Drawing.Size(140, 22);
-            this.TSMIOpen.Text = "&Open";
-            // 
-            // TSMIQuit
-            // 
-            this.TSMIQuit.Image = global::MouvtorPlayer.Properties.Resources.cross;
-            this.TSMIQuit.Name = "TSMIQuit";
-            this.TSMIQuit.ShortcutKeyDisplayString = "Ctrl+Q";
-            this.TSMIQuit.Size = new System.Drawing.Size(140, 22);
-            this.TSMIQuit.Text = "&Quit";
-            this.TSMIQuit.Click += new System.EventHandler(this.TSMIQuit_Click);
-            // 
-            // TSMIPlay
-            // 
-            this.TSMIPlay.Image = global::MouvtorPlayer.Properties.Resources.control_play_blue;
-            this.TSMIPlay.Name = "TSMIPlay";
-            this.TSMIPlay.ShortcutKeyDisplayString = "Ctrl+P";
-            this.TSMIPlay.Size = new System.Drawing.Size(168, 22);
-            this.TSMIPlay.Text = "&Play";
-            this.TSMIPlay.Click += new System.EventHandler(this.TSMIPlay_Click);
-            // 
-            // pauseToolStripMenuItem
-            // 
-            this.pauseToolStripMenuItem.Image = global::MouvtorPlayer.Properties.Resources.control_pause_blue;
-            this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            this.pauseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.pauseToolStripMenuItem.Text = "Pa&use";
-            this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
-            // 
-            // TSMIRecord
-            // 
-            this.TSMIRecord.Image = global::MouvtorPlayer.Properties.Resources.bullet_red;
-            this.TSMIRecord.Name = "TSMIRecord";
-            this.TSMIRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.TSMIRecord.Size = new System.Drawing.Size(168, 22);
-            this.TSMIRecord.Text = "&Record";
-            this.TSMIRecord.Click += new System.EventHandler(this.TSMIRecord_Click);
-            // 
-            // TSMIStopRecord
-            // 
-            this.TSMIStopRecord.Image = global::MouvtorPlayer.Properties.Resources.shape_square;
-            this.TSMIStopRecord.Name = "TSMIStopRecord";
-            this.TSMIStopRecord.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.TSMIStopRecord.Size = new System.Drawing.Size(168, 22);
-            this.TSMIStopRecord.Text = "S&top record";
-            this.TSMIStopRecord.Click += new System.EventHandler(this.TSMIStopRecord_Click);
             // 
             // dzPlayer
             // 
             this.dzPlayer.BackColor = System.Drawing.Color.White;
+            this.dzPlayer.CursorPosition = ((MouvtorCommon.Point3DNormalized)(resources.GetObject("dzPlayer.CursorPosition")));
             this.dzPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dzPlayer.IsDrawing = false;
             this.dzPlayer.Location = new System.Drawing.Point(0, 49);
             this.dzPlayer.Name = "dzPlayer";
             this.dzPlayer.Size = new System.Drawing.Size(836, 438);
             this.dzPlayer.TabIndex = 3;
+            this.dzPlayer.TypeDrawZone = MouvtorCommon.TypeDrawZone.Editor;
             // 
             // FrmMouvtorPlayer
             // 
