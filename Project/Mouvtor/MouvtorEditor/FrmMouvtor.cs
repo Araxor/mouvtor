@@ -21,9 +21,9 @@ namespace MouvtorEditor
 
         #region Properties
         public Timer RefreshTimer { get; set; }
-        private bool IsRecording 
-        { 
-            set 
+        private bool IsRecording
+        {
+            set
             {
                 this._isRecording = value;
                 TSBRecordAndStop.Image = IsRecording ? Properties.Resources.shape_square : Properties.Resources.bullet_red;
@@ -34,9 +34,9 @@ namespace MouvtorEditor
                 {
                     DZEditor.Clear();
                 }
-            } 
+            }
 
-            get { return _isRecording; } 
+            get { return _isRecording; }
         }
 
         private IInputDevice DrawingDevice { get; set; }
@@ -68,7 +68,7 @@ namespace MouvtorEditor
             {
                 if (!DZEditor.IsDrawing)
                     DZEditor.StartDrawing();
-                
+
                 DZEditor.AddPointDrawing(DrawingDevice.CurrentNormalizedPosition);
             }
             else
@@ -111,12 +111,12 @@ namespace MouvtorEditor
 
         private void TSBPencil_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void TSCBXInputDevice_SelectedIndexChanged(object sender, EventArgs e)
         {
-           switch (TSCBXInputDevice.SelectedIndex)
+            switch (TSCBXInputDevice.SelectedIndex)
             {
                 case 0:
                     if (DrawingDevice is LeapMotion)
@@ -134,12 +134,20 @@ namespace MouvtorEditor
                     InputDevices.LeapMotion leap = new LeapMotion();
                     if (leap.IsConnected)
                     {
-                        DrawingDevice = leap;                       
+                        DrawingDevice = leap;
                     }
                     else
                     {
                         MessageBox.Show("Leap motion disconected");
-                    }                    
+                    }
+                    break;
+                case 3:
+                    if (DrawingDevice is LeapMotion)
+                    {
+                        (DrawingDevice as LeapMotion).Disconect();
+                    }
+                    InputDevices.TouchScreen touchscreen = new TouchScreen(DZEditor);
+                    DrawingDevice = touchscreen;
                     break;
             }
             DrawingDevice.StartDrawing += DrawingDevice_StartDrawing;

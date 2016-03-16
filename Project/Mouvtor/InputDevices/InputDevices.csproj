@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LeapMotion.cs" />
+    <Compile Include="TouchScreen.cs" />
     <Compile Include="Mouse.cs" />
     <Compile Include="NovintFalcon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
