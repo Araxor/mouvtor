@@ -12,19 +12,27 @@ Le but de ce projet est de concevoir une application permettant d'enregistrer to
 
 Différents cas d'utilisation de ce programme sont envisageables, comme par exemple l'apprentissage d'un système d'écriture comme le mandarin en utilisant une tablette graphique, ou encore la rééducation de mouvements.
 
-### Equipe
+## Equipe
 
 - Lucien Camuglia
 - Alan Devaud
 - Dimitri Lizzi
 
-## Travail à réaliser
-
-TODO: copier document fourni
-
 ## Environnement
 
+Différents périphériques sont à notre disposition au sein du CFPT :
+
+- Un projecteur tactile de NCI lab (salle RI104)
+- Leapmotion
+- Souris
+- Tablette graphique Cintiq
+- Souris 3D Novint Falcon
+
 ## Travail à rendre
+
+- Documentation
+- Présentation
+- Code source
 
 ## Planning
 
