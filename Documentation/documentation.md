@@ -306,8 +306,9 @@ var desChemins = new List<>
 
 ```
 
-##Périphériques d'entrée
-La classe "InputDevices" permet de gérer les différents périphérique d'entrée :
+### Périphériques d'entrée
+
+La classe `InputDevices` permet de gérer les différents périphérique d'entrée :
    - Souris
    - Souris 3D
    - Leap Motion
@@ -321,39 +322,52 @@ L'événement StartDrawing permet d'effectuer une action lorsque le périphériq
 
 L'événement StopDrawing permet d'effectuer une action lorsque le périphérique ne peut pas dessiner.
 
-###Souris
+#### Souris
 
-La classe "Mouse.cs" est constituée de 4 méthodes dont un timer.
+La classe `Mouse` est constituée de 4 méthodes dont un timer.
 
-La méthode "control_MouseUp" est activée lorsque l'utilisateur relâche le clique de la souris. Elle appelle l'événement "StopDrawing".
+La méthode `control_MouseUp` est activée lorsque l'utilisateur relâche le clique de la souris. Elle appelle l'événement "StopDrawing".
 
-La méthode "control_MouseDown" est activée lorsque l'utilisateur appuye sur le clique de la souris. Elle appelle l'événement "StartDrawing".
+La méthode `control_MouseDown` est activée lorsque l'utilisateur appuye sur le clique de la souris. Elle appelle l'événement "StartDrawing".
 
-La méthode "control_MouseMove" est activée lorsque l'utilisateur bouge la souris. Elle sauvegarde la position X et Y de la souris.
+La méthode `control_MouseMove` est activée lorsque l'utilisateur bouge la souris. Elle sauvegarde la position X et Y de la souris.
 
-Le méthode "tmr_Elapsed" est le timer, il s'éxécute toute les millisecondes. Il sauvegarde les position normalisée de la souris dans la propriétée "CurrentNormalizedPosition".
+Le méthode `tmr_Elapsed` est le timer, il s'éxécute toute les millisecondes. Il sauvegarde les position normalisée de la souris dans la propriétée `CurrentNormalizedPosition`.
 
-###Souris 3D
-    TODO
-###Leap Motion
+#### Souris 3D
 
-La classe "LeapMotion.cs" est constituée de 2 méthodes dont un timer.
+La classe classe `NovintFalcon` est constituée de 2 méthodes dont un timer. 
 
-La méthode "tmr_Tick" est le timer, il s'éxécute toutes les millisecondes.
+La méthode `UpdateTimer_Elapsed` est le timer. Elle s'exécute toutes les millisecondes. Elle met à jour la position X, Y, Z du périphérique. Cette méthode émet un événement `StartDrawing` si l'utilisateur vient d'appuyer sur le bouton central du périphérique et un événement `StopDrawing` si l'utilisateur vient d'arrêter d'appuyer.
+
+La seconde méthode, `DeviceOperation`, est appelée périodiquement par le périphérique à chaque update et va forcer le retour haptique à rester au même niveau.
+
+La bibliothèque [SharpFalcon](https://github.com/hapm/SharpFalcon) a été utilisée pour communiquer avec le périphérique. Pour l'utiliser, il ne faut pas oublier de rajouter les fichiers suivants au projet:
+
+- hdal.ini
+- hdal.dll
+
+Les drivers du périphérique doivent également avoir été installés sur la machine pour que le périphérique soit reconnu.
+
+#### Leap Motion
+
+La classe `LeapMotion` est constituée de 2 méthodes dont un timer.
+
+La méthode `tmr_Tick` est le timer, il s'éxécute toutes les millisecondes.
 Il vérifie que le leap motion est connecté.
-Ensuite il vérifie que l'utilisateur montre sont index et qu'il est tendu. Si c'est le cas, il sauvegarde la position X,Y et Z du doigt dans la propriétée "CurrentNormalizedPosition" et déclache l'événement "StarDrawing".
-Si aucun doigt n'est détecté, l'événement "StopDrawing" est déclanché.
+Ensuite il vérifie que l'utilisateur montre sont index et qu'il est tendu. Si c'est le cas, il sauvegarde la position X,Y et Z du doigt dans la propriétée `CurrentNormalizedPosition` et déclache l'événement `StartDrawing`.
+Si aucun doigt n'est détecté, l'événement `StopDrawing` est déclanché.
 
-La méthode "Disconnect" arrête le timer et désactive le leap motion.
+La méthode `Disconnect` arrête le timer et désactive le leap motion.
 
-###Ecran tactile
+#### Ecran tactile
 
-La classe "TouchScreen.cs" est constituée de 4 méthodes dont un timer.
+La classe `TouchScreen` est constituée de 4 méthodes dont un timer.
 
-Elle ressemble beaucoup a "Mouse.cs" la seule différence est le timer, qui test si la position ne bouge plus pendant une seconde. Si c'est le cas, il appel l'événement "StopDrawing".
+Elle ressemble beaucoup a `Mouse.cs` la seule différence est le timer, qui test si la position ne bouge plus pendant une seconde. Si c'est le cas, il appel l'événement `StopDrawing`.
 
-Cette différence est obligatoire car la méthode "control_MouseUp" n'est pas forcément appelée lorsque le doigt de l'utilisateur est levé.
+Cette différence est obligatoire car la méthode `control_MouseUp` n'est pas forcément appelée lorsque le doigt de l'utilisateur est levé.
 
 
-###Diagrame de classes
+#### Diagrame de classes
 ![Diagramme de classes input devices](./Images/DiagrameClasseInputD.png "Diagramme de classes input devices")
