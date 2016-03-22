@@ -1,3 +1,84 @@
+---
+lang: "francais"
+papersize: "a4paper"
+fontsize: 12pt
+geometry: "hscale=0.8,vscale=0.79"
+header-includes:
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \usepackage{titlesec}
+  - \titleclass{\section}{top}
+  - \newcommand\sectionbreak{\clearpage}
+toc-depth: 4
+---
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%   HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE CFPT école d'informatique}\\[1.5cm] % Name of your university/college
+\textsc{\Large Techniciens ES en informatique}\\[0.5cm] % Major heading such as course name
+\textsc{\large Projet inter-techniciens}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Mouvtor}\\[0.4cm] % Title of your document
+\textsc{\large Documentation}\\[0.5cm]
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%   AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Élèves:}\\
+Lucien \textsc{Camuglia}\\ 
+Alan \textsc{Devaud}\\ 
+Dimitri \textsc{Lizzi}\\ 
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Enseignant:} \\
+M. \textsc{Garchery} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[4cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%   DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%   LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+ 
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+\tableofcontents
+
 # Mouvtor
 
 ## Introduction
@@ -6,19 +87,19 @@
 
 Dans le cadre de la formation de Technicien ES en informatique au CFPT, nous avons effectué des projets de groupe mélangeant les élèves de première et de deuxième année. Ce document décrit le projet _Mouvtor_, réalisé par 2 élèves de première année et un élève de deuxième année.
 
-## But du projet
+### But du projet
 
 Le but de ce projet est de concevoir une application permettant d'enregistrer tous types de mouvements en utilisant différents périphériques d'entrée. Ces mouvement peuvent ensuite être reproduits, et comparés au mouvement original.
 
 Différents cas d'utilisation de ce programme sont envisageables, comme par exemple l'apprentissage d'un système d'écriture comme le mandarin en utilisant une tablette graphique, ou encore la rééducation de mouvements.
 
-## Equipe
+### Equipe
 
-- Lucien Camuglia
-- Alan Devaud
-- Dimitri Lizzi
+- Lucien Camuglia (première année)
+- Alan Devaud (première année)
+- Dimitri Lizzi (deuxième année)
 
-## Environnement
+### Environnement
 
 Différents périphériques sont à notre disposition au sein du CFPT :
 
@@ -28,7 +109,7 @@ Différents périphériques sont à notre disposition au sein du CFPT :
 - Tablette graphique Cintiq
 - Souris 3D Novint Falcon
 
-## Travail à rendre
+### Travail à rendre
 
 - Documentation
 - Présentation
@@ -117,9 +198,11 @@ Différents périphériques sont à notre disposition au sein du CFPT :
 
 - présentation du projet
 
+\newpage
+
 ## Structure de l'application
 
-Deux vues:
+L'application est composée de deux vues:
 
 - Une application d'enregistrement de tracés
     + Bouton de début d'enregistrement
@@ -144,7 +227,9 @@ Un tracé est une liste de points qui ont:
 - un taux de pression (Z)
 - un temps (millisecondes depuis le début du tracé)
 
-##Arborescence des dossiers
+\newpage
+
+## Arborescence des dossiers
 ```
 ──mouvtor
   ├───Documentation
@@ -181,9 +266,11 @@ Un tracé est une liste de points qui ont:
          
 ```
 
+\newpage
 
-##Fenêtres
-###Editeur
+## Fenêtres
+
+### Editeur
 ![Editor](./Images/Editor.png)
 
 1. Ouvrir un fichier contenant les tracés 
@@ -202,7 +289,10 @@ Un tracé est une liste de points qui ont:
 10. Barre de statut
 11. Regroupement de tous les outils cité ci-dessus
 
-###Player
+\newpage
+
+### Player
+
 ![Player](./Images/Player.png)
 
 1. Ouvrir un fichier contenant les tracés 
@@ -217,187 +307,9 @@ Un tracé est une liste de points qui ont:
 6. Barre de statut
 7. Regroupement de tous les outils cité ci-dessus
 
+\newpage
 
 ## Fonctionnement de l'application
-
-### Enregistrement et chargement de chemins
-
-L'application étant partagée en deux parties, l'éditeur et le lecteur, il a fallu définir un format de fichier permettant d'exporter des dessins depuis l'éditeur et de le importer dans le lecteur. Ce format est basé sur _XML_[^XML] et est inspiré du format _SVG_[^SVG]. Il n'est cependant pas intercompatible avec ce dernier. Ce format a été baptisé _MouvML_, pour _Mouvtor Markup Language_.
-
-Les sections suivantes décrivent les différentes balises présentes dans un fichier _MouvML_.
-
-[^XML]:  _Extensible Markup Language_, un format standard de fichier permettant de stocker des informations de manière hiérarchique. 
-
-[^SVG]: _Simple Vector Graphics_, un format standard permettant de décrire des images vectorielles.
-
-#### Balises d'un fichier _MouvML_ 
-
-_MouvML_ étant basé sur _XML_ Un fichier _MouvML_ contient 3 sortes de balises, décrites dans les sections ci-dessous.
-
-##### Doctype
-
-Comme tout fichier _XML_, la première ligne du fichier contient un _doctype_. Cette balise informe sur la version du standard _XML_ utilisé et l'encodage utilisé. _MouvML_ est basé sur la version 1.0 du standard _XML_. L'encodage utilisé pour les fichiers est _UTF-8_. 
-
-Le _doctype_ d'un fichier _MouvML_ doit donc être identique à la ligne suivante:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-```
-
-##### La balise `mouvml` 
-
-Cette balise est la balise parente, qui englobe toutes les autres balises du fichier.  Elle doit __impérativement__ être définie au début du fichier, juste après le _doctype_.  Les enfants de cette balise sont des balises `path`.
-
-Voici un exemple de balise `mouvml`:
-
-```xml
-<mouvml version="0.1">
-    <!-- Les différents chemins du dessin sont définis ici -->
-</mouvml>
-```
-
-Cette balise possède les propriétés suivantes:
-
-| Nom | Obligatoire | Description | Exemple |
-|-----|-------------|-------------|---------|
-| `version` | oui | La version du format MouvML. La version actuelle est la version 1.0. Si le format MouvML est modifié ultérieurement (par exemple, en ajoutant une nouvelle balise), ce numéro de version devra être incrémenté. Cela permettra à l'application d'être consciente de la version du fichier et d'être capable de gérer différentes versions du format MouvML. | `version="1.0"` |
-|-----|-------------|-------------|---------|
-
-##### Les balises `path`
-
-Les balises `path` décrivent un chemin, c'est à dire une ligne tracée par l'utilisateur. Ces balises doivent être des enfants directs de la balise `mouvml`.  Cette balise contient différentes balises `point` qui décrivent chaque point du chemin. Les balises `point` sont décrites dans la section suivante.
-
-Voici un exemple de balise `path` :
-
-```xml
-<path timestamp="3537">
-    <!-- Les différents points du chemin sont définis ici -->
-</path>
-```
-
-Les balises `path` possèdent les propriétés suivantes:
-
-| Nom | Obligatoire | Description | Exemple |
-|-----|-------------|-------------|---------|
-| `timestamp` | Oui | Temps à partir duquel le dessin de ce chemin doit être commencé, en millisecondes depuis le début du dessin. | `timestamp="1337"`
-|-----|-------------|-------------|---------|
-
-##### Les balises  `point`
-
-Les balises `point` décrivent un point à l'intérieur d'un chemin, défini par les coordonnées et la pression du point ainsi que le moment auquel ce point doit être dessiné. . Ces balises doivent être des enfants directs d'une balise `path`. Les coordonnées définies dans une balise `point` sont _relatives_ et non _absolues_, ce qui permet de rendre un chemin indépendant de la taille de la zone de dessin et du périphérique de dessin utilisé.
-
-Voici un exemple de balise `point` :
-
-```xml
-<point x="0.1337" y="0.42" z="0.9" timestamp="0" />
-```
-
-Les balises `point` possèdent les propriétés suivantes:
-
-| Nom | Obligatoire | Description | Exemple |
-|-----|-------------|-------------|---------|
-| `x` | Oui | Position horizontale du point, comprise entre 0 (extrême gauche) et 1.0 (extrême droite).  | `x="0.002322"`
-| `y` | Oui | Position verticale du point, comprise entre 0 (haut de l'image) et 1.0 (bas de l'image)| `y="0.239833"`|
-| `z` | Oui | Profondeur du point, comprise entre 0 (profondeur minimale) et 1.0 (très profondeur maximale). La profondeur est représentée par l'épaisseur du trait dans l'application. | `z="0.999923"` |
-| `timestamp` | Oui | Temps auquel ce point doit être dessiné, en millisecondes à partir du début du chemin parent. Ce temps est donc relatif au temps du chemin parent. | `timestamp="123"` |
-|-----|-------------|-------------|---------|
-
-#### Écriture d'un fichier MouvML
-
-L'écriture d'un fichier _MouvML_ se fait à l'aide de la classe `MouvmlWriter` qui est définie dans le projet _MouvtorCommon_. Cette classe permet de sauvegarder des chemins dans un fichier _MouvML_. 
-
-Un chemin est défini dans l'application comme un objet de type `Path`. Il sera traduit en une balise `path` pendant l'export en fichier _MouvML_. Ce dernier est une liste spécialisée d'objets `PathStep`.
-
-Un objet `PathStep` représente un point d'un chemin. Il sera traduit en une balise `point` pendant l'export en fichier _MouvML_.
-
-La classe `MouvmlWriter` doit être instanciée avec comme paramètre le nom du fichier _MouvML_ où seront sauvegardées les données.  On peut ensuite définir les objets `Path` à sauvegarder grâce aux méthodes `AddPath` et `AddPaths` de `MouvmlWriter`.  On appelle ensuite la méthode `Save` pour générer le fichier.
-
-Voici un exemple d'utilisation de la classe `MouvmlWriter`:
-
-```csharp
-// un chemin que l'on souhaite sauvegarder
-var unChemin = new Path(timestamp: 123)
-{
-    new PathStep(x: 0.2, y: 0.2, z: 1.0, timestamp: 0),
-    new PathStep(x: 0.8, y: 0.2, z: 1.0, timestamp: 500),
-    new PathStep(x: 0.8, y: 0.8, z: 1.0, timestamp: 1000),
-    new PathStep(x: 0.2, y: 0.8, z: 1.0, timestamp: 1500),
-    new PathStep(x: 0.2, y: 0.2, z: 1.0, timestamp: 2000),
-};
-
-// une collection de chemins que l'on souhaite aussi sauvegarder
-var desChemins = new List<Path> {
-    new Path(timestamp: 3000)
-    {
-        new PathStep(x: 0.3, y: 0.7, z: 0.2, timestamp: 0),
-        new PathStep(x: 0.5, y: 0.2, z: 0.3, timestamp: 500)
-    },
-    new Path(timestamp: 4500)
-    {      
-        new PathStep(x: 0.0, y: 0.0, z: 0.5, timestamp: 0),
-        new PathStep(x: 1.0, y: 1.0, z: 0.5, timestamp: 500)
-    }
-};
-
-// Création d'un "writer" pour un fichier
-var writer = new MouvmlWriter("unfichier.mouvml");
-
-// Ajout d'un chemin
-writer.AddPath(unChemin);
-
-// Ajout de plusieurs chemins
-writer.AddPaths(desChemins);
-
-// Sauvegarde du fichier
-writer.Save();
-```
-Le code ci-dessus générera le fichier suivant, nommé `unfichier.mouvml` :
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<mouvml version="0.1">
-  <path timestamp="123">
-    <point x="0.2" y="0.2" z="1" timestamp="0" />
-    <point x="0.8" y="0.2" z="1" timestamp="500" />
-    <point x="0.8" y="0.8" z="1" timestamp="1000" />
-    <point x="0.2" y="0.8" z="1" timestamp="1500" />
-    <point x="0.2" y="0.2" z="1" timestamp="2000" />
-  </path>
-  <path timestamp="3000">
-    <point x="0.3" y="0.7" z="0.2" timestamp="0" />
-    <point x="0.5" y="0.2" z="0.3" timestamp="500" />
-  </path>
-  <path timestamp="4500">
-    <point x="0" y="0" z="0.5" timestamp="0" />
-    <point x="1" y="1" z="0.5" timestamp="500" />
-  </path>
-</mouvml>
-```
-
-#### Lecture d'un fichier _MouvML_
-
-La lecture d'un fichier _MouvML_ s'effectue grâce à la classe `MouvmlReader`. Son utilisation est très simple: on crée une instance de `MouvmlReader` avec le nom du fichier à lire en paramètre du constructeur.  Cet objet est alors utilisable comme une énumération de chemins, c'est à dire un `IEnumerable<Path>`. Si le fichier spécifié n'est pas lisible, une exception de type `FileNotFoundException` sera lancée.
-
-Le code source ci-dessous donne un exemple de lecture d'un chemin:
-
-```csharp
-try
-{
-    // On fabrique un reader pour le fichier "unfichier.mouvml".
-    // Cette ligne peut provoquer une FileNotFoundException
-    var reader = new MouvmlReader("unfichier.mouvml");
-
-    // On peut itérer les chemins contenus dans le fichier
-    foreach (Path path in reader)
-    {
-        // On fait quelque chose avec le chemin
-    }
-}
-catch (FileNotFoundException ex)
-{
-    Debug.WriteLine("Le fichier {0} est introuvable.", ex.FileName);
-}
-```
 
 ### Périphériques d'entrée
 
@@ -463,9 +375,11 @@ Elle ressemble beaucoup a `Mouse.cs` la seule différence est le timer, qui test
 
 Cette différence est obligatoire car la méthode `control_MouseUp` n'est pas forcément appelée lorsque le doigt de l'utilisateur est levé.
 
+\newpage
 
-#### Diagrame de classes
 ![Diagramme de classes input devices](./Images/DiagrameClasseInputD.png "Diagramme de classes input devices")
+
+\newpage
 
 ### DrawingZone
 #### Présentation
@@ -478,6 +392,7 @@ Ce composant est aussi bien utilisée dans l'éditeur que dans le player pour ef
 La _DrawingZone_ est le composant central de l'application
 
 #### Codement parlant
+
 ##### Enumération
 Un énumération a été créée pour pouvoir avec un type de _DrawingZone_. Nous avons deux choix qui s'offre dans cette énumération. `Editor` et `Player` sont les types de _DrawingZone_ possible. 
 - **Editor** : Type pour la version éditeur.
@@ -665,6 +580,185 @@ public PathStep(double x, double y, double z, long timestamp)
 ```
 Il prend en compte la position x, y et z du point pour en créer un `Point3DNormalized`.
 
+\newpage
+
+### Enregistrement et chargement de chemins
+
+L'application étant partagée en deux parties, l'éditeur et le lecteur, il a fallu définir un format de fichier permettant d'exporter des dessins depuis l'éditeur et de le importer dans le lecteur. Ce format est basé sur _XML_[^XML] et est inspiré du format _SVG_[^SVG]. Il n'est cependant pas intercompatible avec ce dernier. Ce format a été baptisé _MouvML_, pour _Mouvtor Markup Language_.
+
+Les sections suivantes décrivent les différentes balises présentes dans un fichier _MouvML_.
+
+[^XML]:  _Extensible Markup Language_, un format standard de fichier permettant de stocker des informations de manière hiérarchique. 
+
+[^SVG]: _Simple Vector Graphics_, un format standard permettant de décrire des images vectorielles.
+
+#### Balises d'un fichier _MouvML_ 
+
+_MouvML_ étant basé sur _XML_ Un fichier _MouvML_ contient 3 sortes de balises, décrites dans les sections ci-dessous.
+
+##### Doctype
+
+Comme tout fichier _XML_, la première ligne du fichier contient un _doctype_. Cette balise informe sur la version du standard _XML_ utilisé et l'encodage utilisé. _MouvML_ est basé sur la version 1.0 du standard _XML_. L'encodage utilisé pour les fichiers est _UTF-8_. 
+
+Le _doctype_ d'un fichier _MouvML_ doit donc être identique à la ligne suivante:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+```
+
+##### La balise `mouvml` 
+
+Cette balise est la balise parente, qui englobe toutes les autres balises du fichier.  Elle doit __impérativement__ être définie au début du fichier, juste après le _doctype_.  Les enfants de cette balise sont des balises `path`.
+
+Voici un exemple de balise `mouvml`:
+
+```xml
+<mouvml version="0.1">
+    <!-- Les différents chemins du dessin sont définis ici -->
+</mouvml>
+```
+
+Cette balise possède les propriétés suivantes:
+
+| Nom | Obligatoire | Description | Exemple |
+|-----|-------------|-------------|---------|
+| `version` | oui | La version du format MouvML. La version actuelle est la version 1.0. Si le format MouvML est modifié ultérieurement (par exemple, en ajoutant une nouvelle balise), ce numéro de version devra être incrémenté. Cela permettra à l'application d'être consciente de la version du fichier et d'être capable de gérer différentes versions du format MouvML. | `version="1.0"` |
+
+##### Les balises `path`
+
+Les balises `path` décrivent un chemin, c'est à dire une ligne tracée par l'utilisateur. Ces balises doivent être des enfants directs de la balise `mouvml`.  Cette balise contient différentes balises `point` qui décrivent chaque point du chemin. Les balises `point` sont décrites dans la section suivante.
+
+Voici un exemple de balise `path` :
+
+```xml
+<path timestamp="3537">
+    <!-- Les différents points du chemin sont définis ici -->
+</path>
+```
+
+Les balises `path` possèdent les propriétés suivantes:
+
+| Nom | Obligatoire | Description | Exemple |
+|-----|-------------|-------------|---------|
+| `timestamp` | Oui | Temps à partir duquel le dessin de ce chemin doit être commencé, en millisecondes depuis le début du dessin. | `timestamp="1337"`
+
+##### Les balises  `point`
+
+Les balises `point` décrivent un point à l'intérieur d'un chemin, défini par les coordonnées et la pression du point ainsi que le moment auquel ce point doit être dessiné. . Ces balises doivent être des enfants directs d'une balise `path`. Les coordonnées définies dans une balise `point` sont _relatives_ et non _absolues_, ce qui permet de rendre un chemin indépendant de la taille de la zone de dessin et du périphérique de dessin utilisé.
+
+Voici un exemple de balise `point` :
+
+```xml
+<point x="0.1337" y="0.42" z="0.9" timestamp="0" />
+```
+
+Les balises `point` possèdent les propriétés suivantes:
+
+| Nom | Obligatoire | Description | Exemple |
+|-----|-------------|-------------|---------|
+| `x` | Oui | Position horizontale du point, comprise entre 0 (extrême gauche) et 1.0 (extrême droite).  | `x="0.002322"`
+| `y` | Oui | Position verticale du point, comprise entre 0 (haut de l'image) et 1.0 (bas de l'image)| `y="0.239833"`|
+| `z` | Oui | Profondeur du point, comprise entre 0 (profondeur minimale) et 1.0 (très profondeur maximale). La profondeur est représentée par l'épaisseur du trait dans l'application. | `z="0.999923"` |
+| `timestamp` | Oui | Temps auquel ce point doit être dessiné, en millisecondes à partir du début du chemin parent. Ce temps est donc relatif au temps du chemin parent. | `timestamp="123"` |
+
+#### Écriture d'un fichier MouvML
+
+L'écriture d'un fichier _MouvML_ se fait à l'aide de la classe `MouvmlWriter` qui est définie dans le projet _MouvtorCommon_. Cette classe permet de sauvegarder des chemins dans un fichier _MouvML_. 
+
+Un chemin est défini dans l'application comme un objet de type `Path`. Il sera traduit en une balise `path` pendant l'export en fichier _MouvML_. Ce dernier est une liste spécialisée d'objets `PathStep`.
+
+Un objet `PathStep` représente un point d'un chemin. Il sera traduit en une balise `point` pendant l'export en fichier _MouvML_.
+
+La classe `MouvmlWriter` doit être instanciée avec comme paramètre le nom du fichier _MouvML_ où seront sauvegardées les données.  On peut ensuite définir les objets `Path` à sauvegarder grâce aux méthodes `AddPath` et `AddPaths` de `MouvmlWriter`.  On appelle ensuite la méthode `Save` pour générer le fichier.
+
+Voici un exemple d'utilisation de la classe `MouvmlWriter`:
+
+```csharp
+// un chemin que l'on souhaite sauvegarder
+var unChemin = new Path(timestamp: 123)
+{
+    new PathStep(x: 0.2, y: 0.2, z: 1.0, timestamp: 0),
+    new PathStep(x: 0.8, y: 0.2, z: 1.0, timestamp: 500),
+    new PathStep(x: 0.8, y: 0.8, z: 1.0, timestamp: 1000),
+    new PathStep(x: 0.2, y: 0.8, z: 1.0, timestamp: 1500),
+    new PathStep(x: 0.2, y: 0.2, z: 1.0, timestamp: 2000),
+};
+
+// une collection de chemins que l'on souhaite aussi sauvegarder
+var desChemins = new List<Path> {
+    new Path(timestamp: 3000)
+    {
+        new PathStep(x: 0.3, y: 0.7, z: 0.2, timestamp: 0),
+        new PathStep(x: 0.5, y: 0.2, z: 0.3, timestamp: 500)
+    },
+    new Path(timestamp: 4500)
+    {      
+        new PathStep(x: 0.0, y: 0.0, z: 0.5, timestamp: 0),
+        new PathStep(x: 1.0, y: 1.0, z: 0.5, timestamp: 500)
+    }
+};
+
+// Création d'un "writer" pour un fichier
+var writer = new MouvmlWriter("unfichier.mouvml");
+
+// Ajout d'un chemin
+writer.AddPath(unChemin);
+
+// Ajout de plusieurs chemins
+writer.AddPaths(desChemins);
+
+// Sauvegarde du fichier
+writer.Save();
+```
+Le code ci-dessus générera le fichier suivant, nommé `unfichier.mouvml` :
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<mouvml version="0.1">
+  <path timestamp="123">
+    <point x="0.2" y="0.2" z="1" timestamp="0" />
+    <point x="0.8" y="0.2" z="1" timestamp="500" />
+    <point x="0.8" y="0.8" z="1" timestamp="1000" />
+    <point x="0.2" y="0.8" z="1" timestamp="1500" />
+    <point x="0.2" y="0.2" z="1" timestamp="2000" />
+  </path>
+  <path timestamp="3000">
+    <point x="0.3" y="0.7" z="0.2" timestamp="0" />
+    <point x="0.5" y="0.2" z="0.3" timestamp="500" />
+  </path>
+  <path timestamp="4500">
+    <point x="0" y="0" z="0.5" timestamp="0" />
+    <point x="1" y="1" z="0.5" timestamp="500" />
+  </path>
+</mouvml>
+```
+
+#### Lecture d'un fichier _MouvML_
+
+La lecture d'un fichier _MouvML_ s'effectue grâce à la classe `MouvmlReader`. Son utilisation est très simple: on crée une instance de `MouvmlReader` avec le nom du fichier à lire en paramètre du constructeur.  Cet objet est alors utilisable comme une énumération de chemins, c'est à dire un `IEnumerable<Path>`. Si le fichier spécifié n'est pas lisible, une exception de type `FileNotFoundException` sera lancée.
+
+Le code source ci-dessous donne un exemple de lecture d'un chemin:
+
+```csharp
+try
+{
+    // On fabrique un reader pour le fichier "unfichier.mouvml".
+    // Cette ligne peut provoquer une FileNotFoundException
+    var reader = new MouvmlReader("unfichier.mouvml");
+
+    // On peut itérer les chemins contenus dans le fichier
+    foreach (Path path in reader)
+    {
+        // On fait quelque chose avec le chemin
+    }
+}
+catch (FileNotFoundException ex)
+{
+    Debug.WriteLine("Le fichier {0} est introuvable.", ex.FileName);
+}
+```
+
+\newpage
 
 ## Bilan
 
