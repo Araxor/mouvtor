@@ -1,14 +1,22 @@
 # Mouvtor
 
-## Equipe
+## Introduction
+
+### Contexte
+
+Dans le cadre de la formation de Technicien ES en informatique au CFPT, nous avons effectué des projets de groupe mélangeant les élèves de première et de deuxième année. Ce document décrit le projet _Mouvtor_, réalisé par 2 élèves de première année et un élève de deuxième année.
+
+## But du projet
+
+Le but de ce projet est de concevoir une application permettant d'enregistrer tous types de mouvements en utilisant différents périphériques d'entrée. Ces mouvement peuvent ensuite être reproduits, et comparés au mouvement original.
+
+Différents cas d'utilisation de ce programme sont envisageables, comme par exemple l'apprentissage d'un système d'écriture comme le mandarin en utilisant une tablette graphique, ou encore la rééducation de mouvements.
+
+### Equipe
 
 - Lucien Camuglia
 - Alan Devaud
 - Dimitri Lizzi
-
-## But
-
-Conception d'une application multi-input pour l'apprentissage de mouvements.
 
 ## Travail à réaliser
 
