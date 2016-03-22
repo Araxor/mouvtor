@@ -664,3 +664,28 @@ public PathStep(double x, double y, double z, long timestamp)
 { }
 ```
 Il prend en compte la position x, y et z du point pour en créer un `Point3DNormalized`.
+
+
+## Bilan
+
+### Atteinte des objectifs
+
+Les objectifs de l'application ont été atteints en partie. Nous avons réussi à gérer toute la partie nous permettant d'enregistrer des dessins et de les rejouer.
+
+Nous n'avons cependant pas eu le temps d'intégrer une fonctionnalité cruciale à l'application: la possibilité pour l'utilisateur d'essayer de reproduire un dessin et de pouvoir comparer cette reproduction avec l'original.
+
+Nous déplorons aussi de ne pas avoir eu le temps de gérer les tablettes graphiques.
+
+### Difficultés rencontrées
+
+L'implémentation du périphérique Novint Falcon a posé pas mal de soucis. En effet, la seule librairie officielle permettant d'inter-agir avec ce périphérique n'est disponible que dans le langage C++. Nous avons dans un premier temps utilisé un _wrapper_ de cette librairie initialement prévu pour le moteur de jeu Unity 3D. 
+
+Ce dernier ne gérait malheureusement pas les boutons correctement donc nous avons tenté de créer notre propre wrapper en nous inspirant de celui que nous avions. Notre manque de connaissances sur l'interopérabilité entre C# et une DLL en développée en C++ nous a empêcher de mener à bien cette tâche.
+
+Nous avons finalement découvert la librairie SharpFalcon qui nous a permi d'utiliser ce périphérique beaucoup plus simplement.
+
+### Conclusion
+
+Nous avons tous eu beaucoup de plaisir à participer à ce projet. Il a été très interessant d'apprendre à utiliser les différents périphériques d'entrée, et de travailler en parallèle sur l'intégration de périphériques différents grâce à une interface commune entre ces derniers que nous avions définie en début de projet. Le groupe avait une bonne dynamique et l'outil de gestion de révisions _git_ a rendu la collaboration triviale.
+
+Malgré que le projet ne soit pas encore terminé, nous estimons que nous avons développé une bonne base qui mériterait d'être développée pendant les années à venir.
