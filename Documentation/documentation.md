@@ -345,7 +345,9 @@ La seconde méthode, `DeviceOperation`, est appelée périodiquement par le pér
 La bibliothèque [SharpFalcon](https://github.com/hapm/SharpFalcon) a été utilisée pour communiquer avec le périphérique. Pour l'utiliser, il ne faut pas oublier de rajouter les fichiers suivants au projet:
 
 - hdal.ini
-- hdal.dll
+- hdl.dll
+- dhdlc.dll
+- dhdlcDriver.dll
 
 Les drivers du périphérique doivent également avoir été installés sur la machine pour que le périphérique soit reconnu.
 
