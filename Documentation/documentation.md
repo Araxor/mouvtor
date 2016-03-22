@@ -294,16 +294,93 @@ Un chemin est défini dans l'application comme un objet de type `Path`. Il sera 
 
 Un objet `PathStep` représente un point d'un chemin. Il sera traduit en une balise `point` pendant l'export en fichier _MouvML_.
 
-Voici un exemple d'utilisation de la classe MouvmlWriter:
+La classe `MouvmlWriter` doit être instanciée avec comme paramètre le nom du fichier _MouvML_ où seront sauvegardées les données.  On peut ensuite définir les objets `Path` à sauvegarder grâce aux méthodes `AddPath` et `AddPaths` de `MouvmlWriter`.  On appelle ensuite la méthode `Save` pour générer le fichier.
+
+Voici un exemple d'utilisation de la classe `MouvmlWriter`:
 
 ```csharp
-
 // un chemin que l'on souhaite sauvegarder
-var unChemin = new Path(timestamp: 123) 
+var unChemin = new Path(timestamp: 123)
+{
+    new PathStep(x: 0.2, y: 0.2, z: 1.0, timestamp: 0),
+    new PathStep(x: 0.8, y: 0.2, z: 1.0, timestamp: 500),
+    new PathStep(x: 0.8, y: 0.8, z: 1.0, timestamp: 1000),
+    new PathStep(x: 0.2, y: 0.8, z: 1.0, timestamp: 1500),
+    new PathStep(x: 0.2, y: 0.2, z: 1.0, timestamp: 2000),
+};
 
 // une collection de chemins que l'on souhaite aussi sauvegarder
-var desChemins = new List<>
+var desChemins = new List<Path> {
+    new Path(timestamp: 3000)
+    {
+        new PathStep(x: 0.3, y: 0.7, z: 0.2, timestamp: 0),
+        new PathStep(x: 0.5, y: 0.2, z: 0.3, timestamp: 500)
+    },
+    new Path(timestamp: 4500)
+    {      
+        new PathStep(x: 0.0, y: 0.0, z: 0.5, timestamp: 0),
+        new PathStep(x: 1.0, y: 1.0, z: 0.5, timestamp: 500)
+    }
+};
 
+// Création d'un "writer" pour un fichier
+var writer = new MouvmlWriter("unfichier.mouvml");
+
+// Ajout d'un chemin
+writer.AddPath(unChemin);
+
+// Ajout de plusieurs chemins
+writer.AddPaths(desChemins);
+
+// Sauvegarde du fichier
+writer.Save();
+```
+Le code ci-dessus générera le fichier suivant, nommé `unfichier.mouvml` :
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<mouvml version="0.1">
+  <path timestamp="123">
+    <point x="0.2" y="0.2" z="1" timestamp="0" />
+    <point x="0.8" y="0.2" z="1" timestamp="500" />
+    <point x="0.8" y="0.8" z="1" timestamp="1000" />
+    <point x="0.2" y="0.8" z="1" timestamp="1500" />
+    <point x="0.2" y="0.2" z="1" timestamp="2000" />
+  </path>
+  <path timestamp="3000">
+    <point x="0.3" y="0.7" z="0.2" timestamp="0" />
+    <point x="0.5" y="0.2" z="0.3" timestamp="500" />
+  </path>
+  <path timestamp="4500">
+    <point x="0" y="0" z="0.5" timestamp="0" />
+    <point x="1" y="1" z="0.5" timestamp="500" />
+  </path>
+</mouvml>
+```
+
+#### Lecture d'un fichier _MouvML_
+
+La lecture d'un fichier _MouvML_ s'effectue grâce à la classe `MouvmlReader`. Son utilisation est très simple: on crée une instance de `MouvmlReader` avec le nom du fichier à lire en paramètre du constructeur.  Cet objet est alors utilisable comme une énumération de chemins, c'est à dire un `IEnumerable<Path>`. Si le fichier spécifié n'est pas lisible, une exception de type `FileNotFoundException` sera lancée.
+
+Le code source ci-dessous donne un exemple de lecture d'un chemin:
+
+```csharp
+try
+{
+    // On fabrique un reader pour le fichier "unfichier.mouvml".
+    // Cette ligne peut provoquer une FileNotFoundException
+    var reader = new MouvmlReader("unfichier.mouvml");
+
+    // On peut itérer les chemins contenus dans le fichier
+    foreach (Path path in reader)
+    {
+        // On fait quelque chose avec le chemin
+    }
+}
+catch (FileNotFoundException ex)
+{
+    Debug.WriteLine("Le fichier {0} est introuvable.", ex.FileName);
+}
 ```
 
 ### Périphériques d'entrée
