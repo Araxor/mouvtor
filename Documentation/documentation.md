@@ -373,3 +373,201 @@ Cette différence est obligatoire car la méthode `control_MouseUp` n'est pas fo
 
 #### Diagrame de classes
 ![Diagramme de classes input devices](./Images/DiagrameClasseInputD.png "Diagramme de classes input devices")
+
+### DrawingZone
+#### Présentation
+
+La _DrawingZone_ est le composant qui permet à l'utilisateur de dessiner son tracer. 
+Ce composant est aussi bien utilisée dans l'éditeur que dans le player pour effectuer et afficher les tracers.
+
+![DrawingZone](./Images/window.PNG "DrawingZone")
+
+La _DrawingZone_ est le composant central de l'application
+
+#### Codement parlant
+##### Enumération
+Un énumération a été créée pour pouvoir avec un type de _DrawingZone_. Nous avons deux choix qui s'offre dans cette énumération. `Editor` et `Player` sont les types de _DrawingZone_ possible. 
+- **Editor** : Type pour la version éditeur.
+- **Player** : Type pour la version _player_.
+
+Elles sont définié lors de la création de la _DrawingZone_.
+
+
+#### Héritage
+La _DrawingZone_ est une classe héritée de `Panel` qui nous permet d'avoir accès aux éléments de base du panel et y implémenter nos propres méthodes et propriétés.
+
+```csharp
+public class DrawingZone : Panel
+```
+
+#### Propriétés
+Dans la _DrawingZone_ nous avons implémentés les propriétés suivantes :
+
+```csharp
+public TypeDrawZone TypeDrawZone { get; set; }
+private Line CurrentLine { get; set; }
+public List<Line> Lines { get; private set; }
+public bool IsDrawing { get; set; }
+public Point3DNormalized CursorPosition { get; set; }
+private Stopwatch Stopwatch
+{
+    get
+    {
+        if (_stopWatch == null)
+        {
+            _stopWatch = new Stopwatch();
+            _stopWatch.Start();
+        }
+        return _stopWatch;
+    }
+    set
+    {
+        _stopWatch = value;
+    }
+}
+```
+
+- **TypeDrawZone** : Cette propriété contien le type de _DrawingZone_ que nous créons. Ce type permet de dire si le composant est appelé pour l'_editor_ ou pour le _player_.
+- **CurrentLine** : C'est la propriété qui permet d'enregistrer la ligne qui est actuellement entraint d'être dessinée.
+- **Lines** : Cette liste contient toutes les lignes qui ont étées tracées sur la _DrawingZone_.
+- **IsDrawing** : Indique si l'utilisateur est actuellement entrain de tracer quelque chose sur la _DrawingZone_.
+- **CursorPosition** : Position du curseur pour la représentation graphique d'un curseur virtuelle.
+- **Stopwatch** : C'est le "chronomètre" qui permet de mesurer la durée d'un tracer.
+
+#### Constructeurs
+La class _DrawingZone_ est constitué de deux constructeurs dont un dédié.
+
+Le constructeur dédié :
+```csharp
+public DrawingZone(TypeDrawZone type)
+{
+    DoubleBuffered = true;
+    Lines = new List<Line>();
+    this.TypeDrawZone = type;
+    Resize += OnSizeChanged;
+}
+```
+
+Se constructeur prend en paramètre le type de la _DrawingZone_. Il effectue également les initialisations nécessaire au bon fonctionnement de la _DrawingZone_ tels que l'activation du `DoubleBuffered`, la création de la liste de `Line`, du type de zone ainsi que de l'évènement _Resize_ avec `Resize += OnSizeChanged`.
+
+Le constructeur par défaut est consitué de sort à qu'il appel le constructeur dédié avec une `TypeDrawZone` par défaut.
+```csharp
+public DrawingZone()
+    : this(TypeDrawZone.Editor)
+{
+
+}
+```
+
+#### Méthodes
+Comme dit auparavant, la class _DrawingZone_ est constitée de méthodes implémentées par nos soins.
+
+- **OnSizeChanged** : Appelle la fonction `ChangeSize` de la class `Line` pour que les lignes d'adapte aux dimension de la fenêtre.
+- **StartDrawing** : Méthode appelée lors du commencement d'un tracer. Il initialise  `IsDrawing` à `true` et `CurrentLine` avec le début d'une nouvelle ligne.
+- **StopDrawing** : Méthode appelée lors de la fin d'un tracer. Elle remet les variables à leur valeur par défaut et ajoute la `CurrentLine` dans la liste de lignes.
+- **AddPointDrawing** : Ajoute les point dessinés dans la `CurrentLine`.
+- **Clear** : Réinitialize la liste de ligne et la `Stopwatch`.
+- **OnPaint** : Méthode qui permet d'afficher les lignes à l'écran.
+- **DrawCursor** : Dessine le curseur virtuel sur la fenêtre.
+
+### Path
+#### Présentation
+_Path_ est une classe créée par nous qui enregistre tous les points qui constitue la tracer. Cette classe est héritée d'une liste de _PathStep_.
+
+```csharp
+public class Path : List<PathStep>
+```
+
+#### Propriétés
+Dans _Path_ les propriétés suivante ont été implémentées :
+
+```csharp
+public long Timestamp {get;  private set;}
+private int CheckedPoint { get; set; }
+```
+
+- **Timestamp** : Enregistre le temps du tracer.
+- **CheckedPoint** : Enregistre le nombre de point déjà vérifié et que l'on doit garder.
+
+#### Constructeurs
+_Path_ est également constitué de deux constructeurs.
+
+Le constructeur dédié :
+```csharp
+public Path(long timestamp)
+{
+    Timestamp = timestamp;
+    this.CheckedPoint = 0;
+}
+```
+Se constructeur à pour paramètre le **Timestamp** du tracer. De plus, il initialise le nombre de point vérifié à 0.
+
+Le deuxième constructeur prend en compte un `IEnumerable` dans les paramètre :
+```csharp
+public Path(long timestamp, IEnumerable<PathStep> points)
+    : this(timestamp)
+{
+    AddRange(points);
+}
+```
+Ajoute le tracer dans le liste de la classe.
+
+#### Méthodes
+La classe _Path_ est constitué d'une méthode :
+
+- **DeleteUselessPoint** : Cette méthode est celle qui fait le nettoyage dans la liste de _PathStep_.
+
+Elle récupère un certain nombre de point à partir du dernier point vérifié jusqu'à la fin de la liste.
+
+```csharp
+for(int i = this.CheckedPoint + 1; i < this.Count - 1; ++i)
+    removed.Add(this[i]);
+```
+
+Une fois les points récupérer on les supprimes de la liste.
+
+```csharp
+for (int i = 0; i < removed.Count; ++i)
+    this.Remove(removed[i]);
+```
+
+Pour finir on augmente le nombre de point vérifié.
+
+```csharp
+this.CheckedPoint++;
+```
+
+### PathStep
+#### Présentation
+_PathStep_ est la classe qui enregistre un point avec son _Timestamp_. Elle est utilisée pour créer la liste de point utilisé dans un tracer.
+
+#### Propriétés
+_PathStep_ est constitué de deux propriétés :
+```csharp
+public Point3DNormalized NormalizedPosition { get; protected set; }
+public long Timestamp { get; internal set; }
+```
+
+- **NormalizedPosition** : Contient la position normalisée du point
+- **Timestamp** : Temps de passage sur le point.
+
+#### Constructor
+_PathStep_ n'échape pas à l'exception du double constructeur.
+
+Le constructeur dédié :
+```csharp
+public PathStep(Point3DNormalized fromPoint, long timestamp)
+{
+    NormalizedPosition = fromPoint;
+    Timestamp = timestamp;
+}
+```
+Le constructeur dédié prend en compte un `Point3DNormalized` et un `timestamp`. Il enregistre ces deux paramètres dans les propriétés précédement créée et préparée à cette usage.
+
+Le deuxième constructeur prend plus de paramètre :
+```csharp
+public PathStep(double x, double y, double z, long timestamp)
+    : this(new Point3DNormalized(x, y, z), timestamp)
+{ }
+```
+Il prend en compte la position x, y et z du point pour en créer un `Point3DNormalized`.
