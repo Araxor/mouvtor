@@ -128,6 +128,43 @@ Un tracé est une liste de points qui ont:
 - un taux de pression (Z)
 - un temps (millisecondes depuis le début du tracé)
 
+##Arborescence des dossiers
+```
+──mouvtor
+  ├───Documentation
+  │   ├───Documentation.md
+  │   ├───documentation.pdf
+  │   └───Images
+  ├───POC
+  │   ├───LeapMotion
+  │   ├───Mouse
+  │   └───TouchScreen
+  └───Project
+      └───Mouvtor
+          ├───InputDevices
+	      │   ├──LeapMotion.cs
+	      │   ├──Mouse.cs
+	      │   ├──NovintFalcon.cs
+	      │   └──TouchScreen.cs
+	      │
+          ├───MouvtorCommon
+	      │   ├──DrawingZone.cs   
+	      │   ├──IInputDevice.cs
+	      │   ├──Line.cs
+	      │   ├──MouvmlReader.cs
+	      │   ├──MouvmlWriter.cs 
+	      │   ├──Path.cs
+	      │   ├──PathStep.cs
+	      │   └──Point3DNormalized.cs
+	      │		 
+          ├───MouvtorEditor
+	      │   └FrmMouvtor.cs
+	      │
+          └───MouvtorPlayer  
+	          └FrmMouvtorPlayer.cs
+         
+```
+
 
 ##Fenêtres
 ###Editeur
@@ -268,3 +305,55 @@ var unChemin = new Path(timestamp: 123)
 var desChemins = new List<>
 
 ```
+
+##Périphériques d'entrée
+La classe "InputDevices" permet de gérer les différents périphérique d'entrée :
+   - Souris
+   - Souris 3D
+   - Leap Motion
+   - Ecran tactile
+
+Elle est constituée d'une propriétée et de deux événements.
+
+La propriétéé CurrentNormalizedPosition permet d'avoir la position du périphérique en X,Y et Z.
+
+L'événement StartDrawing permet d'effectuer une action lorsque le périphérique est prêt à déssiner.
+
+L'événement StopDrawing permet d'effectuer une action lorsque le périphérique ne peut pas dessiner.
+
+###Souris
+
+La classe "Mouse.cs" est constituée de 4 méthodes dont un timer.
+
+La méthode "control_MouseUp" est activée lorsque l'utilisateur relâche le clique de la souris. Elle appelle l'événement "StopDrawing".
+
+La méthode "control_MouseDown" est activée lorsque l'utilisateur appuye sur le clique de la souris. Elle appelle l'événement "StartDrawing".
+
+La méthode "control_MouseMove" est activée lorsque l'utilisateur bouge la souris. Elle sauvegarde la position X et Y de la souris.
+
+Le méthode "tmr_Elapsed" est le timer, il s'éxécute toute les millisecondes. Il sauvegarde les position normalisée de la souris dans la propriétée "CurrentNormalizedPosition".
+
+###Souris 3D
+    TODO
+###Leap Motion
+
+La classe "LeapMotion.cs" est constituée de 2 méthodes dont un timer.
+
+La méthode "tmr_Tick" est le timer, il s'éxécute toutes les millisecondes.
+Il vérifie que le leap motion est connecté.
+Ensuite il vérifie que l'utilisateur montre sont index et qu'il est tendu. Si c'est le cas, il sauvegarde la position X,Y et Z du doigt dans la propriétée "CurrentNormalizedPosition" et déclache l'événement "StarDrawing".
+Si aucun doigt n'est détecté, l'événement "StopDrawing" est déclanché.
+
+La méthode "Disconnect" arrête le timer et désactive le leap motion.
+
+###Ecran tactile
+
+La classe "TouchScreen.cs" est constituée de 4 méthodes dont un timer.
+
+Elle ressemble beaucoup a "Mouse.cs" la seule différence est le timer, qui test si la position ne bouge plus pendant une seconde. Si c'est le cas, il appel l'événement "StopDrawing".
+
+Cette différence est obligatoire car la méthode "control_MouseUp" n'est pas forcément appelée lorsque le doigt de l'utilisateur est levé.
+
+
+###Diagrame de classes
+![Diagramme de classes input devices](./Images/DiagrameClasseInputD.png "Diagramme de classes input devices")
